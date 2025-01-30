@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.8c4b6bcf.css",
+    "main.js": "/static/js/main.348ece48.js",
+    "static/js/787.3ba5e41c.chunk.js": "/static/js/787.3ba5e41c.chunk.js",
+    "static/media/Bio_Portrait_Google.jpg": "/static/media/Bio_Portrait_Google.178f55624199033f65eb.jpg",
+    "static/media/weather-app.png": "/static/media/weather-app.8b59c74abe016bd79162.png",
+    "static/media/Resume - Maximus Niu - Jan 30 2025.pdf": "/static/media/Resume - Maximus Niu - Jan 30 2025.18ebf22b4c6dc76d94c3.pdf",
+    "static/media/portfolio-website.png": "/static/media/portfolio-website.dc646050bab53568ee4d.png",
+    "static/media/Waterloo_Engineering_Logo_vert_rev_rgb.png": "/static/media/Waterloo_Engineering_Logo_vert_rev_rgb.6ab4dfcef696cfca3dce.png",
+    "static/media/slick.svg": "/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
+    "static/media/Logo_MN_v1.svg": "/static/media/Logo_MN_v1.23c44a8ed969f6bfefe9c4f27f42b7d3.svg",
+    "index.html": "/index.html",
+    "main.8c4b6bcf.css.map": "/static/css/main.8c4b6bcf.css.map",
+    "main.348ece48.js.map": "/static/js/main.348ece48.js.map",
+    "787.3ba5e41c.chunk.js.map": "/static/js/787.3ba5e41c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8c4b6bcf.css",
+    "static/js/main.348ece48.js"
+  ]
+}
