@@ -1,0 +1,43 @@
+*{
+    cursor: none;
+}
+
+.inner-cursor {
+    position: fixed;
+    width: 13px;
+    height: 13px;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    mix-blend-mode: difference;
+    border-radius: 50%;
+    pointer-events: none;
+    cursor: none;
+    z-index: 1000;
+}
+
+.outer-cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    transform: translate(-50%, -50%);
+    border: 1px solid white;
+    mix-blend-mode: difference;
+    border-radius: 50%;
+    pointer-events: none;
+    cursor: none;
+    z-index: 1000;
+}
+
+@media only screen and (max-width:768px) {
+    * {
+        cursor: pointer;
+    }
+
+    .outer-cursor {
+        display: none;
+    }
+
+    .inner-cursor {
+        display: none;
+    }
+}

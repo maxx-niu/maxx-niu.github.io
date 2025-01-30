@@ -1,0 +1,27 @@
+.timeline-container {
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 1rem;
+    background: linear-gradient(90deg, rgba(170, 54, 124, 0.5) -6%, rgba(74, 47, 189, 0.5) 112%);
+    margin: 0 auto;
+}
+
+.timeline-container::after {
+    background-color: #8f75d1;
+    content: "";
+    position: absolute;
+    width: 4px;
+    height: 85%;
+    left: calc(50% - 2px);
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@media only screen and (max-width: 767px) {
+    .timeline-container::after {
+        width: 0;
+        height: 0;
+    }
+}

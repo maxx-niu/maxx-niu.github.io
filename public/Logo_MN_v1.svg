@@ -1,0 +1,41 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="184.39999" height="163.59999" viewBox="0 0 184.39999 163.59999">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #58595b;
+      }
+
+      .cls-2 {
+        fill: none;
+      }
+
+      .cls-3 {
+        fill: #808285;
+      }
+
+      .cls-4 {
+        fill: #bcbec0;
+      }
+
+      .cls-5 {
+        fill: #607e9b;
+      }
+    </style>
+  </defs>
+  <g>
+    <polygon class="cls-1" points="41.9 62.3 41.9 163.6 0 163.6 0 0.1 41.9 62.3"/>
+    <line class="cls-2" y1="0.09999"/>
+  </g>
+  <g>
+    <polygon class="cls-3" points="92 61.8 66.8 99.3 41.9 62.3 0 0.1 50.5 0.1 92 61.8"/>
+    <line class="cls-2" y1="0.09999"/>
+    <line class="cls-2" x1="66.79999" y1="99.3" x2="66.79999" y2="99.3"/>
+  </g>
+  <line class="cls-2" x1="66.79999" y1="99.3" x2="66.79999" y2="99.3"/>
+  <polygon class="cls-4" points="163.3 30.8 163.3 30.8 142.7 61.4 142.5 61.7 117.3 99.3 66.8 99.3 92 61.8 133.5 0 142.9 0 163.3 30.8"/>
+  <line class="cls-2" x1="142.70001" y1="163.3" x2="142.5" y2="163.3"/>
+  <polygon class="cls-5" points="184.4 62.5 184.4 163.5 142.9 163.5 142.9 0.2 143.1 0.2 163.5 31 163.5 31 184.4 62.5"/>
+  <polygon class="cls-5" points="184.1 0.4 184.1 62.7 163.2 31.1 163.2 31.1 183.9 0.4 184.1 0.4"/>
+  <polygon class="cls-5" points="184 0.2 163.1 31.2 142.6 0.2 184 0.2"/>
+  <line class="cls-2" x1="142.89999" x2="142.70001"/>
+</svg>

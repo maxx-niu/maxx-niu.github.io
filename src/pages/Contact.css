@@ -1,0 +1,85 @@
+.contact {
+    height: 100vh;
+}
+
+#contact-me{
+    padding-top: 72px;
+}
+
+.contact-container {
+    background: linear-gradient(90deg, rgba(170, 54, 124, 0.5) -6%, rgba(74, 47, 189, 0.5) 112%);
+    padding: 2rem;
+    border-radius: 2rem;
+    margin: 0 auto;
+    margin-top: 2rem;
+    width: 90%;
+}
+
+.contact-container h2 {
+    margin-bottom: 2.5rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.input-box {
+    position: relative;
+}
+
+.input-box span {
+    position: absolute;
+    left: 0;
+    padding: 1.2rem;
+    font-size: 1em;
+    transition: 0.2s ease-in;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.input-box input:focus ~ span,
+.input-box textarea:focus ~ span {
+    background-color: none;
+    transform: translateY(-1.6rem);
+    padding: 0 1.2rem;
+    color: rgba(255, 255, 255, 1);
+}
+
+/* .input-box textarea:valid ~ span,
+.input-box input:valid ~ span {
+    background-color: none;
+    transform: translateY(-1.6rem);
+    padding: 0 1.2rem;
+    color: rgba(255, 255, 255, 1);
+} */
+
+input, textarea {
+    width: 100%;
+    padding: 1.2rem;
+    border-radius: 0.5rem;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    color: white;
+    resize: none;
+    outline: none;
+    font-size: 1em;
+}
+
+::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.send {
+    width: 50%;
+    margin: 0 auto;
+    transition: 0.2s ease-in;
+}
+
+.send:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+textarea {
+    font-family: inherit;
+}

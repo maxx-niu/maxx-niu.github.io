@@ -1,0 +1,24 @@
+/* @keyframes load-animation {
+    0% {
+        opacity: 0;
+        transform: rotateX(-10deg);
+    }
+    100% {
+        opacity: 1;
+        transform: rotateX(0);
+    }
+} */
+
+.privacy-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: black;
+    z-index: 0;
+}
+
+.big-container {
+    position: relative;
+}

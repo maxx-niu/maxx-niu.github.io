@@ -1,0 +1,148 @@
+#home {
+    position: relative;
+}
+
+.banner {
+    margin: auto;
+    padding: 30vh 3% 0 3%;
+    background-position: top center;
+    background-size: cover;
+    position: relative;
+    height: 100vh;
+}
+
+.banner .tagline {
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    padding: 8px 10px;
+    background: linear-gradient(90deg, rgba(170, 54, 124, 0.5) -6%, rgba(74, 47, 189, 0.5) 112%);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    font-size: 20px;
+    display: inline-block;
+}
+
+.banner h1 {
+    font-size: 65px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    line-height: 1;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    display: block;
+}
+
+.banner p {
+    color: #B8B8B8;
+    font-size: 18px;
+    letter-spacing: 0.8px;
+    line-height: 1.5em;
+    width: 96%;
+}
+
+.banner button {
+    color: black;
+    font-weight: 700;
+    font-size: 18px;
+    margin-top: 20px;
+    letter-spacing: 0.8px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 2em;
+    transition: 0.2s ease-in-out;
+}
+
+.banner a {
+    text-decoration: none;
+}
+
+/* .banner button svg {
+    display: block;
+    font-size: 25px;
+    transition: 0.3s ease-in-out;
+    line-height: 1;
+    color:#2b313b;
+} */
+
+.banner button:hover {
+    transform: scale(1.15);
+}
+
+.txt-rotate>.wrap {
+    border-right: 0.08em solid #666;
+}
+
+.scroll-down {
+    height: 55px;
+    width: 35px;
+    border: transparent;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
+    border-radius: 50px;
+    transition: all 400ms ease-in;
+}
+
+.scroll-down::before {
+    content: "";
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    height: 13px;
+    width: 13px;
+    transform: translate(-50%, -50%) rotate(45deg);
+    border-top: transparent;
+    border-left: transparent;
+}
+
+.scroll-down:hover {
+    border: 1.2px solid rgba(255, 255, 255, 0.8);
+}
+
+.scroll-down::before {
+    border: 2px solid rgba(255, 255, 255, 0);
+    border-top: transparent;
+    border-left: transparent;
+    animation: scroll-down 1.5s ease-in-out infinite;
+    animation-delay: 1.5s;
+}
+
+@keyframes scroll-down {
+    0% {
+        opacity: 0;
+        border: 2px solid rgba(255, 255, 255, 1);
+        border-top: transparent;
+        border-left: transparent;
+    }
+    30% {
+        opacity: 1;
+        border: 2px solid rgba(255, 255, 255, 1);
+        border-top: transparent;
+        border-left: transparent;
+    }
+    60% {
+        opacity: 1;
+        border: 2px solid rgba(255, 255, 255, 1);
+        border-top: transparent;
+        border-left: transparent;
+    }
+    100% {
+        opacity: 0;
+        top: 75%;
+        border: 2px solid rgba(255, 255, 255, 1);
+        border-top: transparent;
+        border-left: transparent;
+    }
+}
+
+@media only screen and (max-width:768px) {
+    .scroll-down-btn {
+        display: none;
+    }
+
+    .banner {
+        padding-top: 40%;
+    }
+}

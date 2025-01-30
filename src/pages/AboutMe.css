@@ -1,0 +1,243 @@
+.container {
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#about-me {
+    padding-top: 72px;
+}
+
+.experience-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+.spacer {
+    height: 2rem;
+}
+
+.experience-container > div {
+    grid-column: span 2;
+    background: linear-gradient(90deg, rgba(170, 54, 124, 0.5) -6%, rgba(74, 47, 189, 0.5) 112%);
+    padding: 2rem 3rem;
+    border-radius: 2rem;
+    text-align: center;
+}
+
+.experience-container>div h3 {
+    justify-content: center;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+.experience-container2 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+.experience-container2 > div {
+    grid-column: span 2;
+    grid-column-end: 4;
+    background: linear-gradient(90deg, rgba(170, 54, 124, 0.5) -6%, rgba(74, 47, 189, 0.5) 112%);
+    padding: 2rem 3rem;
+    border-radius: 2rem;
+    text-align: center;
+}
+
+.experience-container>div h3 {
+    justify-content: center;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+.skill-slider {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.skill-slider .item {
+    width: 50%;
+    margin: 0 auto 15px auto;
+}
+
+.skill-slider
+.slick-prev{
+    cursor: none;
+}
+
+.skill-slider .slick-next {
+    cursor: none;
+}
+
+.skill-slider .slick-dots {
+    margin-bottom: 1rem;
+}
+
+.skill-slider .slick-dots button {
+    cursor: none;
+}
+
+.bio-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background: linear-gradient(90deg, rgba(170, 54, 124, 0.5) -6%, rgba(74, 47, 189, 0.5) 112%);
+    padding: 2rem 3rem;
+    border-radius: 2rem;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 2rem;
+}
+
+.bio {
+    grid-column: 1 / span 2;
+}
+
+.bio-image {
+    grid-column: 3 / span 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bio-image img {
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 1.3rem;
+}
+
+.bio h3 {
+    margin-top: 0;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1rem;
+}
+
+/* .bio img {
+    height: 100%;
+    width: auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 0.5rem;
+} */
+
+.education-container h3 {
+    margin-top: 0;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1rem;
+}
+
+.education-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background: linear-gradient(90deg, rgba(170, 54, 124, 0.5) -6%, rgba(74, 47, 189, 0.5) 112%);
+    padding: 2rem 3rem;
+    border-radius: 2rem;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 2rem;
+}
+
+.education-item {
+    grid-column: 1 / span 2;
+}
+
+.education-item-img {
+    grid-column: 3 / span 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.education-item-img img {
+    width: 100%;
+}
+
+/* @media only screen and (max-width:1420px) {
+    .bio img {
+        height: 80%;
+        width: auto;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+} */
+
+/* @media only screen and (max-width:1180px) {
+    .bio img {
+        height: 70%;
+        width: auto;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+} */
+
+@media only screen and (max-width:1048px) {
+    .bio-container {
+        grid-template-columns: 1fr;
+    }
+
+    .bio {
+        grid-column: 1 / span 1;
+    }
+
+    .bio-image{
+        grid-column: 1 / span 1;
+    }
+
+    .education-container {
+        grid-template-columns: 1fr;
+    }
+
+    .education-item {
+        grid-column: 1 / span 1;
+    }
+
+    .education-item-img {
+        grid-column: 1 / span 1;
+    }
+}
+
+@media only screen and (max-width:768px){
+    .experience-container {
+        grid-template-columns: 1fr;
+    }
+
+    .experience-container2 {
+        grid-template-columns: 1fr;
+    }
+
+    .experience-container2>div {
+        grid-column: span 2;
+    }
+}
+
+/* @media only screen and (max-width:564px) {
+    .bio {
+        height: 450px;
+    }
+
+    .bio img {
+        height: 80%;
+    }
+} */
+/* 
+@media only screen and (max-width:480px) {
+    .bio {
+        height: 600px;
+    }
+
+    .bio img {
+        height: 60%;
+    }
+} */
