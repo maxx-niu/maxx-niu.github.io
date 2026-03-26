@@ -1,38 +1,107 @@
-import React from "react";
+"use client";
 
-function Navbar() {
+import { useState } from "react";
+
+const Navbar = () => {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  const navLinks = [
+    { name: "Experience", href: "#experience" },
+    { name: "Projects", href: "#projects" },
+  ];
+
   return (
-    <header className="fixed top-0 w-full z-50 bg-background border-b border-outline-variant/20 flex justify-between items-center px-6 py-4">
-      <div className="text-primary font-headline font-bold tracking-tighter uppercase">
-        MAXX Niu&apos;s Portfolio
-      </div>
-      <nav className="hidden md:flex items-center gap-8 font-headline tracking-tighter uppercase text-sm font-bold">
-        <a className="text-primary border-b-2 border-primary pb-1" href="#">
-          TIMELINE
-        </a>
+    <nav className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
+      <div className="liquid-glass flex items-center justify-between w-full max-w-4xl h-14 px-8 rounded-full">
+        {/* Logo */}
         <a
-          className="text-outline-variant hover:text-primary transition-colors"
           href="#"
+          className="font-headline text-on-surface font-bold tracking-tight text-lg hover:text-primary transition-colors"
         >
-          COMPACT
+          MAX NIU
         </a>
-        <a
-          className="text-outline-variant hover:text-primary transition-colors"
-          href="#"
+
+        {/* Navigation Links */}
+        <ul className="hidden md:flex items-center gap-8">
+          {navLinks.map((link) => (
+            <li key={link.name}>
+              <a
+                href={link.href}
+                className="font-mono text-xs tracking-widest uppercase text-secondary hover:text-primary transition-colors"
+              >
+                {link.name}
+              </a>
+            </li>
+          ))}
+          <li>
+            <a
+              href="mailto:maxniu444@gmail.com"
+              className="font-mono text-xs tracking-widest uppercase text-on-surface-variant bg-primary-container/30 hover:bg-primary-container/50 px-4 py-1.5 rounded-full transition-colors"
+            >
+              Contact
+            </a>
+          </li>
+        </ul>
+
+        {/* Mobile Menu Toggle */}
+        <button
+          className="md:hidden text-secondary hover:text-primary transition-colors"
+          onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label="Toggle menu"
         >
-          SUMMARY
-        </a>
-      </nav>
-      <div className="flex items-center gap-4 text-primary">
-        <button className="p-2 hover:bg-surface-container-high transition-all duration-150 rounded">
-          <span className="material-symbols-outlined">terminal</span>
-        </button>
-        <button className="p-2 hover:bg-surface-container-high transition-all duration-150 rounded">
-          <span className="material-symbols-outlined">settings</span>
+          <svg
+            className="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            {mobileOpen ? (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            ) : (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16m-7 6h7"
+              />
+            )}
+          </svg>
         </button>
       </div>
-    </header>
+
+      {/* Mobile Menu */}
+      {mobileOpen && (
+        <div className="md:hidden absolute top-20 left-4 right-4 bg-surface-container/90 backdrop-blur-xl border border-outline-variant/20 rounded-2xl p-6 shadow-2xl">
+          <ul className="flex flex-col gap-4">
+            {navLinks.map((link) => (
+              <li key={link.name}>
+                <a
+                  href={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="font-mono text-xs tracking-widest uppercase text-secondary hover:text-primary transition-colors"
+                >
+                  {link.name}
+                </a>
+              </li>
+            ))}
+            <li>
+              <a
+                href="mailto:maxniu444@gmail.com"
+                className="font-mono text-xs tracking-widest uppercase text-on-surface-variant"
+              >
+                Contact
+              </a>
+            </li>
+          </ul>
+        </div>
+      )}
+    </nav>
   );
-}
+};
 
 export default Navbar;
