@@ -16,9 +16,9 @@ const Navbar = () => {
       <LiquidGlass
         className="flex items-center justify-between w-full max-w-4xl h-14 px-8 rounded-full"
         radius={28}
-        depth={3}
+        depth={10}
         strength={20}
-        chromaticAberration={3}
+        chromaticAberration={4}
         blur={4}
       >
         {/* Logo */}
