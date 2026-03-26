@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import LiquidGlass from "./liquid-glass";
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -12,7 +13,14 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
-      <div className="liquid-glass flex items-center justify-between w-full max-w-4xl h-14 px-8 rounded-full">
+      <LiquidGlass
+        className="flex items-center justify-between w-full max-w-4xl h-14 px-8 rounded-full"
+        radius={28}
+        depth={3}
+        strength={20}
+        chromaticAberration={3}
+        blur={4}
+      >
         {/* Logo */}
         <a
           href="#"
@@ -72,11 +80,11 @@ const Navbar = () => {
             )}
           </svg>
         </button>
-      </div>
+      </LiquidGlass>
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="md:hidden absolute top-20 left-4 right-4 bg-surface-container/90 backdrop-blur-xl border border-outline-variant/20 rounded-2xl p-6 shadow-2xl">
+        <LiquidGlass className="md:hidden absolute top-20 left-4 right-4 rounded-2xl p-6">
           <ul className="flex flex-col gap-4">
             {navLinks.map((link) => (
               <li key={link.name}>
@@ -98,7 +106,7 @@ const Navbar = () => {
               </a>
             </li>
           </ul>
-        </div>
+        </LiquidGlass>
       )}
     </nav>
   );
