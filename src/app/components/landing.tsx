@@ -1,6 +1,7 @@
 "use client";
 
 import LiquidGlass from "./liquid-glass";
+import WidgetBar from "./widgets/widget-bar";
 
 function Landing() {
   return (
@@ -42,21 +43,18 @@ function Landing() {
         {/* Status metadata */}
         <div className="flex flex-col space-y-2 mb-12">
           <div className="flex items-center space-x-3">
-            <span className="w-2 h-2 bg-tertiary rounded-full animate-pulse" />
+            <span className="w-2 h-2 bg-tertiary rounded-full animate-pulse shadow-[0_0_6px_2px_var(--color-tertiary)]" />
             <span className="font-mono text-[14px] uppercase tracking-widest text-secondary">
               SYSTEM_STATUS: OPERATIONAL
             </span>
           </div>
-          {/* Penny's <3 */}
-          <div className="font-mono text-[14px] uppercase tracking-widest text-outline">
-            LOCATION: 43.47674° N, -80.52545° W // WATERLOO_ON
-          </div>
+          <WidgetBar />
         </div>
 
         {/* Headline */}
         <div className="max-w-4xl space-y-6">
-          <h1 className="font-headline font-bold text-5xl md:text-7xl lg:text-8xl tracking-tighter leading-[0.9] text-on-surface">
-            I'm Max Niu.
+          <h1 className="font-headline font-bold text-5xl md:text-7xl lg:text-8xl tracking-tighter text-on-surface">
+            I&apos;m Max Niu.
             <br />
             I build systems <br />
             that <span className="text-primary">scale.</span>
