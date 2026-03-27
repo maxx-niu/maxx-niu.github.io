@@ -4,8 +4,7 @@ import LiquidGlass from "../liquid-glass";
 import WidgetBar from "./widgets/widget-bar";
 import { motion } from "motion/react";
 
-const BG_FADE = { duration: 0.9, ease: "easeIn" as const };
-const GLOW_DELAY = BG_FADE.duration + 0.5;
+const GRID_FADE = { duration: 0.9, ease: "easeIn" as const };
 const GLOW_PULSE = {
   duration: 2.8,
   repeat: Infinity,
@@ -20,7 +19,7 @@ function Landing() {
       <motion.div
         initial={{ opacity: 0, clipPath: "inset(0 0 100% 0)" }}
         animate={{ opacity: 1, clipPath: "inset(0 0 0 0)" }}
-        transition={BG_FADE}
+        transition={GRID_FADE}
         style={{
           position: "absolute",
           top: 0,
@@ -40,7 +39,11 @@ function Landing() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ ...BG_FADE, delay: GLOW_DELAY, duration: 1.5 }}
+        transition={{
+          ...GRID_FADE,
+          delay:
+            GRID_FADE.duration /* start after the grid background fades in */,
+        }}
         style={{
           position: "absolute",
           inset: 0,
@@ -54,7 +57,6 @@ function Landing() {
           animate={{ opacity: 0.55 }}
           transition={{
             ...GLOW_PULSE,
-            delay: GLOW_DELAY,
           }}
           style={{
             position: "absolute",
