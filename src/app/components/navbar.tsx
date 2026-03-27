@@ -3,7 +3,12 @@
 import { useState } from "react";
 import LiquidGlass from "./liquid-glass";
 
-const Navbar = () => {
+const Navbar = ({
+  /** Progress of the navbar animation. 0 = fully visible, 1 = fully hidden. */
+  progress = 1,
+}: {
+  progress?: number;
+}) => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const navLinks = [
@@ -12,9 +17,16 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
+    <nav
+      className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4"
+      style={{
+        transform: `translateY(${(1 - progress) * -56}px)`,
+        pointerEvents: progress > 0.5 ? "auto" : "none",
+      }}
+    >
       <LiquidGlass
         className="flex items-center justify-between w-full max-w-4xl h-14 px-8 rounded-full"
+        extraStyle={{ opacity: progress }} // opacity needs to be placed here, instead of the ancestor element so that backdrop filter works properly
         radius={28}
         depth={10}
         strength={20}

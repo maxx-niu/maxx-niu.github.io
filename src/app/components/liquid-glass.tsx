@@ -6,6 +6,7 @@ import { getDisplacementFilter } from "./liquid-glass-utils";
 interface LiquidGlassProps {
   children: ReactNode;
   className?: string;
+  extraStyle?: CSSProperties;
   /** Border radius of the lens shape in the displacement map. Should match the element's CSS border-radius. */
   radius?: number;
   /** How many pixels inward from the edge the refraction extends. Higher = thicker glass edge. */
@@ -21,6 +22,7 @@ interface LiquidGlassProps {
 export default function LiquidGlass({
   children,
   className = "",
+  extraStyle,
   radius = 28,
   depth = 8,
   strength = 80,
@@ -57,7 +59,7 @@ export default function LiquidGlass({
     <div
       ref={ref}
       className={`relative overflow-hidden shadow-[inset_0_0_2px_rgba(255,255,255,0.35)] ${className}`}
-      style={style}
+      style={{ ...style, ...extraStyle }}
     >
       {children}
     </div>

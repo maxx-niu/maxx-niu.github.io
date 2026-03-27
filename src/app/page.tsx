@@ -1,5 +1,13 @@
 import Experiences from "./components/experiences";
+import Landing from "./components/landing";
+import NavbarWrapper from "./components/navbar-wrapper";
 
 export default function Home() {
-  return <Experiences />;
+  return (
+    <>
+      <NavbarWrapper />
+      <Landing />
+      <Experiences />
+    </>
+  );
 }
