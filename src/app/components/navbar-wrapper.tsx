@@ -8,7 +8,7 @@ export default function NavbarWrapper() {
 
   useEffect(() => {
     const onScroll = () => {
-      const start = window.innerHeight * 0.3;
+      const start = window.innerHeight * 0.6;
       const end = window.innerHeight * 0.8;
       const p = Math.min(
         Math.max((window.scrollY - start) / (end - start), 0),
