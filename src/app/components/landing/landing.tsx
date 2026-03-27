@@ -1,6 +1,6 @@
 "use client";
 
-import LiquidGlass from "./liquid-glass";
+import LiquidGlass from "../liquid-glass";
 import WidgetBar from "./widgets/widget-bar";
 
 function Landing() {
@@ -60,9 +60,7 @@ function Landing() {
             that <span className="text-primary">scale.</span>
           </h1>
           <p className="font-body text-lg md:text-xl text-secondary max-w-2xl leading-relaxed">
-            Full-stack engineer specializing in high-concurrency architectures
-            and minimalist interface design. Bridging the gap between raw
-            technical performance and editorial precision.
+            Let&apos;s build something together.
           </p>
         </div>
 
@@ -78,7 +76,7 @@ function Landing() {
           <div className="glow-border-secondary rounded-full group cursor-pointer">
             <LiquidGlass className="px-8 py-4 rounded-full bg-[#0e0e11] group-hover:bg-surface-container-high group-active:bg-surface-container-low transition-colors duration-150">
               <span className="font-headline font-bold uppercase tracking-tighter text-sm text-secondary group-hover:text-on-surface/60 transition-colors duration-150">
-                DOWNLOAD_CV
+                DOWNLOAD CV
               </span>
             </LiquidGlass>
           </div>
