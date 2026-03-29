@@ -1,8 +1,8 @@
 "use client";
 
 import LiquidGlass from "../liquid-glass";
-import WidgetBar from "./widgets/widget-bar";
-import { motion } from "motion/react";
+import StatusMetadata from "./widgets/status-metadata";
+import { motion, useAnimation } from "motion/react";
 
 const GRID_FADE = { duration: 0.9, ease: "easeIn" as const };
 const GLOW_PULSE = {
@@ -67,22 +67,11 @@ function Landing() {
         />
       </motion.div>
 
-      {/* 
-      // Hero 
+      {/* Hero  */}
       <section className="relative z-10 flex flex-col justify-center px-6 md:px-12 lg:px-24 py-20 max-w-7xl min-h-screen">
-        // Status metadata 
-        <div className="flex flex-col space-y-2 mb-12">
-          <div className="flex items-center space-x-3">
-            <span className="w-2 h-2 bg-tertiary rounded-full animate-pulse shadow-[0_0_6px_2px_var(--color-tertiary)]" />
-            <span className="font-mono text-[14px] uppercase tracking-widest text-secondary">
-              SYSTEM_STATUS: OPERATIONAL
-            </span>
-          </div>
-          <WidgetBar />
-        </div>
+        <StatusMetadata />
 
-        // Headline 
-        <div className="max-w-4xl space-y-6">
+        {/* <div className="max-w-4xl space-y-6">
           <h1 className="font-headline font-bold text-5xl md:text-7xl lg:text-8xl tracking-tighter text-on-surface">
             I&apos;m Max Niu.
             <br />
@@ -94,7 +83,6 @@ function Landing() {
           </p>
         </div>
 
-        // CTA
         <div className="mt-12 flex flex-col sm:flex-row gap-6">
           <div className="glow-border-primary rounded-full group cursor-pointer">
             <LiquidGlass className="px-8 py-4 rounded-full bg-[#0e0e11] group-hover:bg-surface-container-high group-active:bg-surface-container-low transition-colors duration-150">
@@ -110,9 +98,8 @@ function Landing() {
               </span>
             </LiquidGlass>
           </div>
-        </div>
+        </div> */}
       </section>
-      */}
     </div>
   );
 }
