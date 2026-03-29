@@ -2,6 +2,7 @@
 
 import Headline from "./widgets/headline";
 import StatusMetadata from "./widgets/status-metadata";
+import Globe from "./widgets/globe";
 import { useState } from "react";
 import { animate, useAnimate } from "motion/react";
 
@@ -13,7 +14,7 @@ const GLOW_PULSE = {
   ease: "easeIn" as const,
 };
 
-function Landing() {
+function Landing({ onComplete }: { onComplete?: () => void }) {
   const [scope, animateScope] = useAnimate();
   const [headlineTrigger, setHeadlineTrigger] = useState(false);
   const [showWidgetBar, setShowWidgetBar] = useState(false);
@@ -24,11 +25,12 @@ function Landing() {
       { opacity: 1, clipPath: "inset(0 0 0 0)" },
       GRID_FADE,
     );
-    await animateScope("#glow", { opacity: 1 }, GRID_FADE);
+    await animate("#glow", { opacity: 1 }, GRID_FADE);
+    animateScope("#globe-container", { opacity: 1 }, { duration: 2, ease: "easeIn" });
     animate("#glow-inner", { opacity: 0.55 }, GLOW_PULSE);
     setTimeout(() => {
       setHeadlineTrigger(true);
-    }, 500);
+    }, 300);
   };
 
   return (
@@ -54,28 +56,13 @@ function Landing() {
         }}
       />
 
-      {/* Radial glow */}
+      {/* Globe - desktop only */}
       <div
-        id="glow"
-        style={{
-          position: "absolute",
-          inset: 0,
-          pointerEvents: "none",
-          zIndex: 0,
-          opacity: 0,
-        }}
+        id="globe-container"
+        className="hidden lg:block absolute top-1/2 -translate-y-1/2 pointer-events-none"
+        style={{ opacity: 0, right: "-120px" }}
       >
-        <div
-          id="glow-inner"
-          aria-hidden
-          style={{
-            position: "absolute",
-            inset: 0,
-            opacity: 0.2,
-            background:
-              "radial-gradient(circle at top right, rgba(47, 46, 190, 1), transparent 60%)",
-          }}
-        />
+        <Globe />
       </div>
 
       {/* Hero */}
@@ -88,7 +75,7 @@ function Landing() {
 
         <Headline
           trigger={headlineTrigger}
-          onComplete={() => setTimeout(() => setShowWidgetBar(true), 500)}
+          onComplete={() => setTimeout(() => { setShowWidgetBar(true); onComplete?.(); }, 300)}
         />
       </section>
     </div>

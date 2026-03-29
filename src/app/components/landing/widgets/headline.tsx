@@ -7,7 +7,13 @@ import LiquidGlass from "../../liquid-glass";
 const HIDDEN_CLIP = "inset(0 0 100% 0)";
 const LINE_EASE = [0.16, 1, 0.3, 1] as const;
 
-function Headline({ trigger, onComplete }: { trigger: boolean; onComplete?: () => void }) {
+function Headline({
+  trigger,
+  onComplete,
+}: {
+  trigger: boolean;
+  onComplete?: () => void;
+}) {
   const [scope, animate] = useAnimate();
 
   useEffect(() => {
@@ -15,17 +21,17 @@ function Headline({ trigger, onComplete }: { trigger: boolean; onComplete?: () =
     const run = async () => {
       animate(
         "#h1-line1",
-        { clipPath: "inset(0 0 0% 0)" },
+        { clipPath: "inset(-4px 0 -4px 0)" },
         { duration: 1, ease: LINE_EASE },
       );
       animate(
         "#h1-line2",
-        { clipPath: "inset(0 0 0% 0)" },
+        { clipPath: "inset(-4px 0 -4px 0)" },
         { duration: 1, ease: LINE_EASE, delay: 0.4 },
       );
       animate(
         "#h1-line3",
-        { clipPath: "inset(0 0 0% 0)" },
+        { clipPath: "inset(-4px 0 -4px 0)" },
         { duration: 1, ease: LINE_EASE, delay: 0.8 },
       );
       animate(
