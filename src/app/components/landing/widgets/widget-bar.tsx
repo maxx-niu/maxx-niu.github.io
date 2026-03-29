@@ -64,14 +64,18 @@ function WidgetBar() {
       )}
 
       {/* Fade edges */}
-      <div className="absolute left-0 top-0 bottom-0 w-12 bg-linear-to-r from-background to-transparent z-10 pointer-events-none" />
-      <div className="absolute right-0 top-0 bottom-0 w-12 bg-linear-to-l from-background to-transparent z-10 pointer-events-none" />
-
-      {/* Two identical copies. Translates exactly one copy's pixel width,
-          so copy B seamlessly replaces copy A with no snap. */}
+      <div className="absolute left-0 top-0 bottom-0 w-12 bg-linear-to-r from-background to-background/0 z-10 pointer-events-none" />
+      <div className="absolute right-0 top-0 bottom-0 w-12 bg-linear-to-l from-background to-background/0 z-10 pointer-events-none" />
       <div
         className="flex whitespace-nowrap"
-        style={{ animation: width > 0 ? "ticker 30s linear infinite" : "none" }}
+        style={{
+          animationName: width > 0 ? "ticker" : "none",
+          animationDuration: "30s",
+          animationTimingFunction: "linear",
+          animationDelay: "1.5s",
+          animationIterationCount: "infinite",
+          animationFillMode: "backwards",
+        }}
       >
         <div ref={ref} className="flex items-center shrink-0">
           <WidgetSet />

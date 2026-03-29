@@ -2,7 +2,7 @@ import WidgetBar from "./widget-bar";
 import { motion, useAnimate } from "motion/react";
 import { useEffect, useState } from "react";
 
-function StatusMetadata() {
+function StatusMetadata({ onComplete, showWidgetBar }: { onComplete?: () => void; showWidgetBar?: boolean }) {
   const [scope, animate] = useAnimate();
   const [part1Done, setPart1Done] = useState(false);
   const [isTextDone, setIsTextDone] = useState(false);
@@ -13,7 +13,7 @@ function StatusMetadata() {
 
   useEffect(() => {
     const run = async () => {
-      await animate("#status-indicator", { opacity: 1 }, { duration: 0.5 });
+      await animate("#status-indicator", { opacity: 1 }, { duration: 0.8 });
       await animate(
         "#part1",
         { width: "fit-content" },
@@ -56,7 +56,10 @@ function StatusMetadata() {
                 duration: PART2.length * 0.07,
                 ease: (t) => Math.round(t * PART2.length) / PART2.length,
               }}
-              onAnimationComplete={() => setIsTextDone(true)}
+              onAnimationComplete={() => {
+                setIsTextDone(true);
+                onComplete?.();
+              }}
             >
               {PART2}
             </motion.span>
@@ -77,7 +80,14 @@ function StatusMetadata() {
           />
         </div>
       </div>
-      <WidgetBar />
+      <motion.div
+        initial={{ height: 0, opacity: 0 }}
+        animate={{ height: showWidgetBar ? "auto" : 0, opacity: showWidgetBar ? 1 : 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        style={{ overflow: "hidden" }}
+      >
+        {showWidgetBar && <WidgetBar />}
+      </motion.div>
     </motion.div>
   );
 }

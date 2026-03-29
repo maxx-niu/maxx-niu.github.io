@@ -1,8 +1,9 @@
 "use client";
 
-import LiquidGlass from "../liquid-glass";
+import Headline from "./widgets/headline";
 import StatusMetadata from "./widgets/status-metadata";
-import { motion, useAnimation } from "motion/react";
+import { useState } from "react";
+import { animate, useAnimate } from "motion/react";
 
 const GRID_FADE = { duration: 0.9, ease: "easeIn" as const };
 const GLOW_PULSE = {
@@ -13,14 +14,31 @@ const GLOW_PULSE = {
 };
 
 function Landing() {
+  const [scope, animateScope] = useAnimate();
+  const [headlineTrigger, setHeadlineTrigger] = useState(false);
+  const [showWidgetBar, setShowWidgetBar] = useState(false);
+
+  const onStatusComplete = async () => {
+    await animateScope(
+      "#grid",
+      { opacity: 1, clipPath: "inset(0 0 0 0)" },
+      GRID_FADE,
+    );
+    await animateScope("#glow", { opacity: 1 }, GRID_FADE);
+    animate("#glow-inner", { opacity: 0.55 }, GLOW_PULSE);
+    setTimeout(() => {
+      setHeadlineTrigger(true);
+    }, 500);
+  };
+
   return (
-    <div className="relative min-h-screen overflow-hidden">
+    <div ref={scope} className="relative min-h-screen overflow-hidden">
       {/* Grid background */}
-      <motion.div
-        initial={{ opacity: 0, clipPath: "inset(0 0 100% 0)" }}
-        animate={{ opacity: 1, clipPath: "inset(0 0 0 0)" }}
-        transition={GRID_FADE}
+      <div
+        id="grid"
         style={{
+          opacity: 0,
+          clipPath: "inset(0 0 100% 0)",
           position: "absolute",
           top: 0,
           left: "50%",
@@ -35,70 +53,43 @@ function Landing() {
           mask: "linear-gradient(-360deg, transparent 40%, white)",
         }}
       />
-      {/* Radial glow: outer fades in, inner loops opacity so repeat does not replay the entrance */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{
-          ...GRID_FADE,
-          delay:
-            GRID_FADE.duration /* start after the grid background fades in */,
-        }}
+
+      {/* Radial glow */}
+      <div
+        id="glow"
         style={{
           position: "absolute",
           inset: 0,
           pointerEvents: "none",
           zIndex: 0,
+          opacity: 0,
         }}
       >
-        <motion.div
+        <div
+          id="glow-inner"
           aria-hidden
-          initial={{ opacity: 0.2 }}
-          animate={{ opacity: 0.55 }}
-          transition={{
-            ...GLOW_PULSE,
-          }}
           style={{
             position: "absolute",
             inset: 0,
+            opacity: 0.2,
             background:
               "radial-gradient(circle at top right, rgba(47, 46, 190, 1), transparent 60%)",
           }}
         />
-      </motion.div>
+      </div>
 
-      {/* Hero  */}
+      {/* Hero */}
       <section className="relative z-10 flex flex-col justify-center px-6 md:px-12 lg:px-24 py-20 max-w-7xl min-h-screen">
-        <StatusMetadata />
+        {/* Animate the BG grid and glow AFTER the status metadata animation completes */}
+        <StatusMetadata
+          onComplete={onStatusComplete}
+          showWidgetBar={showWidgetBar}
+        />
 
-        {/* <div className="max-w-4xl space-y-6">
-          <h1 className="font-headline font-bold text-5xl md:text-7xl lg:text-8xl tracking-tighter text-on-surface">
-            I&apos;m Max Niu.
-            <br />
-            I build systems <br />
-            that <span className="text-primary">scale.</span>
-          </h1>
-          <p className="font-body text-lg md:text-xl text-secondary max-w-2xl leading-relaxed">
-            Let&apos;s build something together.
-          </p>
-        </div>
-
-        <div className="mt-12 flex flex-col sm:flex-row gap-6">
-          <div className="glow-border-primary rounded-full group cursor-pointer">
-            <LiquidGlass className="px-8 py-4 rounded-full bg-[#0e0e11] group-hover:bg-surface-container-high group-active:bg-surface-container-low transition-colors duration-150">
-              <span className="font-headline font-bold uppercase tracking-tighter text-sm text-secondary group-hover:text-on-surface/60 transition-colors duration-150">
-                VIEW PROJECTS
-              </span>
-            </LiquidGlass>
-          </div>
-          <div className="glow-border-secondary rounded-full group cursor-pointer">
-            <LiquidGlass className="px-8 py-4 rounded-full bg-[#0e0e11] group-hover:bg-surface-container-high group-active:bg-surface-container-low transition-colors duration-150">
-              <span className="font-headline font-bold uppercase tracking-tighter text-sm text-secondary group-hover:text-on-surface/60 transition-colors duration-150">
-                DOWNLOAD CV
-              </span>
-            </LiquidGlass>
-          </div>
-        </div> */}
+        <Headline
+          trigger={headlineTrigger}
+          onComplete={() => setTimeout(() => setShowWidgetBar(true), 500)}
+        />
       </section>
     </div>
   );
