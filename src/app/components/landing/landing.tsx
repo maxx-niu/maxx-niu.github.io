@@ -5,6 +5,7 @@ import StatusMetadata from "./widgets/status-metadata";
 import Globe from "./widgets/globe";
 import { useState } from "react";
 import { animate, useAnimate } from "motion/react";
+import { useVisitors } from "@/app/hooks/use-visitors";
 
 const GRID_FADE = { duration: 0.9, ease: "easeIn" as const };
 const GLOW_PULSE = {
@@ -18,6 +19,7 @@ function Landing({ onComplete }: { onComplete?: () => void }) {
   const [scope, animateScope] = useAnimate();
   const [headlineTrigger, setHeadlineTrigger] = useState(false);
   const [showWidgetBar, setShowWidgetBar] = useState(false);
+  const { markers } = useVisitors();
 
   const onStatusComplete = async () => {
     await animateScope(
@@ -67,10 +69,10 @@ function Landing({ onComplete }: { onComplete?: () => void }) {
         {/* Globe - desktop only */}
         <div
           id="globe-container"
-          className="hidden xl:block absolute top-1/2 -right-20 -translate-y-1/2 pointer-events-none"
+          className="hidden xl:block absolute top-1/2 -right-20 -translate-y-1/2 z-20"
           style={{ opacity: 0 }}
         >
-          <Globe />
+          <Globe markers={markers} />
         </div>
 
         {/* Hero */}
