@@ -10,22 +10,24 @@ export default function Globe() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const size = Math.round(window.innerWidth / 2);
+    const dpr = Math.min(window.devicePixelRatio, 2);
+    const size = 620;
     canvas.style.width = `${size}px`;
     canvas.style.height = `${size}px`;
 
     let phi = 0;
     let frameId: number;
+    let visible = true;
 
     const globe = createGlobe(canvas, {
-      devicePixelRatio: 2,
-      width: size * 2,
-      height: size * 2,
+      devicePixelRatio: dpr,
+      width: size * dpr,
+      height: size * dpr,
       phi: 0,
-      theta: 0.25,
+      theta: 0.35,
       dark: 1,
       diffuse: 1.2,
-      mapSamples: 16000,
+      mapSamples: 10000,
       mapBrightness: 6,
       baseColor: [0.15, 0.15, 0.2],
       markerColor: [0.75, 0.75, 1],
@@ -33,14 +35,26 @@ export default function Globe() {
     });
 
     const loop = () => {
-      phi += 0.003;
-      globe.update({ phi });
+      if (visible) {
+        phi += 0.003;
+        globe.update({ phi });
+      }
       frameId = requestAnimationFrame(loop);
     };
     frameId = requestAnimationFrame(loop);
 
+    // pause the globe when it is not visible
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        visible = entry.isIntersecting;
+      },
+      { threshold: 0 },
+    );
+    observer.observe(canvas);
+
     return () => {
       cancelAnimationFrame(frameId);
+      observer.disconnect();
       globe.destroy();
     };
   }, []);

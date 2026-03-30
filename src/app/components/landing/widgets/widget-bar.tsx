@@ -4,7 +4,6 @@ import { ReactNode, useRef, useEffect, useState } from "react";
 import Location from "./subwidgets/location";
 import { UserTimeDisplay, MyTimeDisplay } from "./subwidgets/time-display";
 import SessionHash from "./subwidgets/session-hash";
-import SystemSpecs from "./subwidgets/system-specs";
 
 const SEPARATOR = <span className="text-outline-variant">{"//"}</span>;
 
@@ -31,10 +30,6 @@ function WidgetSet() {
         <SessionHash />
       </TickerItem>
       <TickerItem>{SEPARATOR}</TickerItem>
-      <TickerItem>
-        <SystemSpecs />
-      </TickerItem>
-      <TickerItem>{SEPARATOR}</TickerItem>
     </>
   );
 }
@@ -53,7 +48,7 @@ function WidgetBar() {
   }, []);
 
   return (
-    <div className="relative w-full overflow-hidden font-mono text-[12px] uppercase tracking-widest text-outline">
+    <div className="relative overflow-hidden font-mono text-[12px] uppercase tracking-widest text-outline">
       {width > 0 && (
         <style>{`
           @keyframes ticker {

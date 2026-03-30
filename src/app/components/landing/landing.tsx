@@ -26,7 +26,11 @@ function Landing({ onComplete }: { onComplete?: () => void }) {
       GRID_FADE,
     );
     await animate("#glow", { opacity: 1 }, GRID_FADE);
-    animateScope("#globe-container", { opacity: 1 }, { duration: 2, ease: "easeIn" });
+    animateScope(
+      "#globe-container",
+      { opacity: 1 },
+      { duration: 2, ease: "easeIn" },
+    );
     animate("#glow-inner", { opacity: 0.55 }, GLOW_PULSE);
     setTimeout(() => {
       setHeadlineTrigger(true);
@@ -56,28 +60,38 @@ function Landing({ onComplete }: { onComplete?: () => void }) {
         }}
       />
 
-      {/* Globe - desktop only */}
       <div
-        id="globe-container"
-        className="hidden lg:block absolute top-1/2 -translate-y-1/2 pointer-events-none"
-        style={{ opacity: 0, right: "-120px" }}
+        id="hero-content-container"
+        className="relative max-w-[75%] mx-auto px-6 md:px-12 lg:px-24 min-h-screen"
       >
-        <Globe />
+        {/* Globe - desktop only */}
+        <div
+          id="globe-container"
+          className="hidden xl:block absolute top-1/2 -right-20 -translate-y-1/2 pointer-events-none"
+          style={{ opacity: 0 }}
+        >
+          <Globe />
+        </div>
+
+        {/* Hero */}
+        <section className="relative z-10 flex flex-col justify-center py-20 min-h-screen">
+          {/* Animate the BG grid and glow AFTER the status metadata animation completes */}
+          <StatusMetadata
+            onComplete={onStatusComplete}
+            showWidgetBar={showWidgetBar}
+          />
+
+          <Headline
+            trigger={headlineTrigger}
+            onComplete={() =>
+              setTimeout(() => {
+                setShowWidgetBar(true);
+                onComplete?.();
+              }, 300)
+            }
+          />
+        </section>
       </div>
-
-      {/* Hero */}
-      <section className="relative z-10 flex flex-col justify-center px-6 md:px-12 lg:px-24 py-20 max-w-7xl min-h-screen">
-        {/* Animate the BG grid and glow AFTER the status metadata animation completes */}
-        <StatusMetadata
-          onComplete={onStatusComplete}
-          showWidgetBar={showWidgetBar}
-        />
-
-        <Headline
-          trigger={headlineTrigger}
-          onComplete={() => setTimeout(() => { setShowWidgetBar(true); onComplete?.(); }, 300)}
-        />
-      </section>
     </div>
   );
 }

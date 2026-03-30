@@ -2,7 +2,13 @@ import WidgetBar from "./widget-bar";
 import { motion, useAnimate } from "motion/react";
 import { useEffect, useState } from "react";
 
-function StatusMetadata({ onComplete, showWidgetBar }: { onComplete?: () => void; showWidgetBar?: boolean }) {
+function StatusMetadata({
+  onComplete,
+  showWidgetBar,
+}: {
+  onComplete?: () => void;
+  showWidgetBar?: boolean;
+}) {
   const [scope, animate] = useAnimate();
   const [part1Done, setPart1Done] = useState(false);
   const [isTextDone, setIsTextDone] = useState(false);
@@ -82,9 +88,14 @@ function StatusMetadata({ onComplete, showWidgetBar }: { onComplete?: () => void
       </div>
       <motion.div
         initial={{ height: 0, opacity: 0 }}
-        animate={{ height: showWidgetBar ? "auto" : 0, opacity: showWidgetBar ? 1 : 0 }}
+        animate={{
+          height: showWidgetBar ? "auto" : 0,
+          opacity: showWidgetBar ? 1 : 0,
+        }}
         transition={{ duration: 0.5, ease: "easeOut" }}
         style={{ overflow: "hidden" }}
+        id="widget-bar-container"
+        className="max-w-[620px]"
       >
         {showWidgetBar && <WidgetBar />}
       </motion.div>

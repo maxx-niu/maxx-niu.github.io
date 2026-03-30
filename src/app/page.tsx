@@ -10,7 +10,9 @@ export default function Home() {
 
   useEffect(() => {
     document.body.style.overflow = landingDone ? "" : "hidden";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [landingDone]);
 
   return (
@@ -26,7 +28,7 @@ export default function Home() {
             top: 0,
             left: 0,
             right: 0,
-            bottom: "-40vh",
+            bottom: "-60vh",
             pointerEvents: "none",
             zIndex: 0,
             opacity: 0,
