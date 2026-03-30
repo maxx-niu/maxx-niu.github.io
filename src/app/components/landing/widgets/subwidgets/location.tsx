@@ -1,5 +1,5 @@
 function Location() {
-  return <span>LOCATION: 43.47674° N, -80.52545° W | WATERLOO_ON</span>;
+  return <span>BASED_IN: WATERLOO_ON | 43.47674° N, -80.52545° W</span>;
 }
 
 export default Location;

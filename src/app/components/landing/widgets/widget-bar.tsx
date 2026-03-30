@@ -59,15 +59,15 @@ function WidgetBar() {
       )}
 
       {/* Fade edges */}
-      <div className="absolute left-0 top-0 bottom-0 w-12 bg-linear-to-r from-background to-background/0 z-10 pointer-events-none" />
-      <div className="absolute right-0 top-0 bottom-0 w-12 bg-linear-to-l from-background to-background/0 z-10 pointer-events-none" />
+      {/* <div className="absolute left-0 top-0 bottom-0 w-12 bg-linear-to-r from-background to-background/0 z-10 pointer-events-none" />
+      <div className="absolute right-0 top-0 bottom-0 w-12 bg-linear-to-l from-background to-background/0 z-10 pointer-events-none" /> */}
       <div
         className="flex whitespace-nowrap"
         style={{
           animationName: width > 0 ? "ticker" : "none",
           animationDuration: "30s",
           animationTimingFunction: "linear",
-          animationDelay: "1.5s",
+          animationDelay: "2s",
           animationIterationCount: "infinite",
           animationFillMode: "backwards",
         }}

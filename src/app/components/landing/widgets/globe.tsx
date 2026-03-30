@@ -183,12 +183,12 @@ export default function Globe({ markers = [] }: GlobeProps) {
           <span>
             <span style={{ color: "var(--color-tertiary)" }}>&gt;</span>{" "}
             VISITOR_LOG{" "}
-            <span style={{ color: "var(--color-secondary)" }}>{"// LIVE"}</span>
+            <span style={{ color: "var(--color-secondary)" }}>{"|"}</span>
           </span>
         </div>
         <div className="pl-[18px]">
           {" "}
-          TOTAL_CONNECTIONS:{" "}
+          TOTAL_VISITS ={" "}
           <span style={{ color: "var(--color-primary)" }}>{totalCount}</span>
         </div>
       </div>
@@ -248,12 +248,9 @@ export default function Globe({ markers = [] }: GlobeProps) {
               className="font-mono text-[11px] tracking-wide whitespace-nowrap"
               style={{ color: "var(--color-on-surface-variant)" }}
             >
-              <span style={{ color: "var(--color-secondary)" }}>
-                {m.isCurrent ? "YOU" : "VISITORS"}:
-              </span>{" "}
               <span style={{ color: dotColor }}>{m.country}</span>
               {" // "}
-              <span style={{ color: "var(--color-secondary)" }}>n=</span>
+              <span style={{ color: "var(--color-secondary)" }}>VISITS = </span>
               <span style={{ color: "var(--color-on-surface)" }}>
                 {m.count}
               </span>
