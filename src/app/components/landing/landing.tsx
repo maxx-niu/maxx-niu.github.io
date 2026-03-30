@@ -62,7 +62,7 @@ function Landing({ onComplete }: { onComplete?: () => void }) {
 
       <div
         id="hero-content-container"
-        className="relative max-w-[75%] mx-auto px-6 md:px-12 lg:px-24 min-h-screen"
+        className="relative w-full xl:max-w-[1700px] mx-auto px-6 md:px-12 lg:px-24 min-h-screen"
       >
         {/* Globe - desktop only */}
         <div
