@@ -1,12 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { motion, useScroll, useTransform } from "motion/react";
 import Experiences from "./components/experiences";
 import Landing from "./components/landing/landing";
 import NavbarWrapper from "./components/navbar-wrapper";
 
 export default function Home() {
   const [landingDone, setLandingDone] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     document.body.style.overflow = landingDone ? "" : "hidden";
@@ -15,13 +17,20 @@ export default function Home() {
     };
   }, [landingDone]);
 
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+
+  const glowY = useTransform(scrollYProgress, [0, 1], ["0vh", "-20vh"]);
+
   return (
     <>
       {landingDone && <NavbarWrapper />}
 
-      {/* Wrapper ties the glow to the landing section without clipping it */}
-      <div style={{ position: "relative" }}>
-        <div
+      <div ref={containerRef} style={{ height: "300vh", position: "relative" }}>
+        {/* Glow effect tied to the landing section */}
+        <motion.div
           id="glow"
           style={{
             position: "absolute",
@@ -32,6 +41,7 @@ export default function Home() {
             pointerEvents: "none",
             zIndex: 0,
             opacity: 0,
+            y: glowY,
           }}
         >
           <div
@@ -45,11 +55,24 @@ export default function Home() {
                 "radial-gradient(circle at top right, rgba(47, 46, 190, 1), transparent 60%)",
             }}
           />
-        </div>
+        </motion.div>
 
-        <Landing onComplete={() => setLandingDone(true)} />
+        <Landing
+          scrollYProgress={scrollYProgress}
+          onComplete={() => setLandingDone(true)}
+        />
       </div>
-      {landingDone && <Experiences />}
+      {landingDone && (
+        <motion.div
+          initial={{ opacity: 0, y: 100 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+          viewport={{ once: true, amount: 0 }}
+          style={{ marginTop: "-100vh", position: "relative", zIndex: 1 }}
+        >
+          <Experiences />
+        </motion.div>
+      )}
     </>
   );
 }

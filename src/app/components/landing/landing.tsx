@@ -4,7 +4,13 @@ import Headline from "./widgets/headline";
 import StatusMetadata from "./widgets/status-metadata";
 import Globe from "./widgets/globe";
 import { useState } from "react";
-import { animate, useAnimate } from "motion/react";
+import {
+  animate,
+  motion,
+  useAnimate,
+  useTransform,
+  type MotionValue,
+} from "motion/react";
 import { useVisitors } from "@/app/hooks/use-visitors";
 
 const GRID_FADE = { duration: 0.9, ease: "easeIn" as const };
@@ -15,11 +21,22 @@ const GLOW_PULSE = {
   ease: "easeIn" as const,
 };
 
-function Landing({ onComplete }: { onComplete?: () => void }) {
+function Landing({
+  onComplete,
+  scrollYProgress,
+}: {
+  onComplete?: () => void;
+  scrollYProgress: MotionValue<number>;
+}) {
   const [scope, animateScope] = useAnimate();
   const [headlineTrigger, setHeadlineTrigger] = useState(false);
   const [showWidgetBar, setShowWidgetBar] = useState(false);
   const { markers } = useVisitors();
+
+  const heroX = useTransform(scrollYProgress, [0, 0.8], ["0vw", "-110vw"]);
+  const globeX = useTransform(scrollYProgress, [0, 0.8], ["0vw", "110vw"]);
+  const exitOpacity = useTransform(scrollYProgress, [0.1, 0.75], [1, 0]);
+  const gridY = useTransform(scrollYProgress, [0, 1], ["0vh", "-20vh"]);
 
   const onStatusComplete = async () => {
     await animateScope(
@@ -40,9 +57,9 @@ function Landing({ onComplete }: { onComplete?: () => void }) {
   };
 
   return (
-    <div ref={scope} className="relative min-h-screen overflow-hidden">
+    <div ref={scope} className="sticky top-0 h-screen overflow-hidden z-10">
       {/* Grid background */}
-      <div
+      <motion.div
         id="grid"
         style={{
           opacity: 0,
@@ -50,7 +67,8 @@ function Landing({ onComplete }: { onComplete?: () => void }) {
           position: "absolute",
           top: 0,
           left: "50%",
-          transform: "translateX(-50%)",
+          x: "-50%",
+          y: gridY,
           zIndex: -1,
           height: "100%",
           width: "100%",
@@ -67,17 +85,20 @@ function Landing({ onComplete }: { onComplete?: () => void }) {
         className="relative w-full xl:max-w-[1700px] mx-auto px-6 md:px-12 lg:px-24 min-h-screen"
       >
         {/* Globe - desktop only */}
-        <div
-          id="globe-container"
+        <motion.div
           className="hidden xl:block absolute top-1/2 -right-20 -translate-y-1/2 z-20"
-          style={{ opacity: 0 }}
+          style={{ x: globeX, opacity: exitOpacity }}
         >
-          <Globe markers={markers} />
-        </div>
+          <div id="globe-container" style={{ opacity: 0 }}>
+            <Globe markers={markers} />
+          </div>
+        </motion.div>
 
         {/* Hero */}
-        <section className="relative z-10 flex flex-col justify-center py-20 min-h-screen">
-          {/* Animate the BG grid and glow AFTER the status metadata animation completes */}
+        <motion.section
+          className="relative z-10 flex flex-col justify-center py-20 min-h-screen"
+          style={{ x: heroX, opacity: exitOpacity }}
+        >
           <StatusMetadata
             onComplete={onStatusComplete}
             showWidgetBar={showWidgetBar}
@@ -92,7 +113,7 @@ function Landing({ onComplete }: { onComplete?: () => void }) {
               }, 300)
             }
           />
-        </section>
+        </motion.section>
       </div>
     </div>
   );
