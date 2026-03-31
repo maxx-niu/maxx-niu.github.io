@@ -1,15 +1,39 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useAnimate, useScroll, useTransform } from "motion/react";
 import Experiences from "./components/experiences";
 import Landing from "./components/landing/landing";
-import NavbarWrapper from "./components/navbar-wrapper";
+import Navbar from "./components/navbar";
 
 export default function Home() {
   const [landingDone, setLandingDone] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const landingContainerRef = useRef<HTMLDivElement>(null);
+  const [glowScope, animateGlow] = useAnimate();
 
+  const handleGlowReady = async () => {
+    await animateGlow(
+      glowScope.current,
+      { opacity: 1 },
+      { duration: 0.9, ease: "easeIn" },
+    );
+    animateGlow(
+      "#glow-inner",
+      { opacity: 0.55 },
+      {
+        duration: 2.8,
+        repeat: Infinity,
+        repeatType: "reverse",
+        ease: "easeIn",
+      },
+    );
+  };
+
+  useEffect(() => {
+    history.scrollRestoration = "manual";
+  }, []);
+
+  // prevent scroll when landing animation is playing
   useEffect(() => {
     document.body.style.overflow = landingDone ? "" : "hidden";
     return () => {
@@ -17,62 +41,76 @@ export default function Home() {
     };
   }, [landingDone]);
 
+  // 0: top of the landing container is at the top of the viewport
+  // 1: bottom of the landing container is at the bototm of the viewport
   const { scrollYProgress } = useScroll({
-    target: containerRef,
+    target: landingContainerRef,
     offset: ["start start", "end end"],
   });
 
-  const glowY = useTransform(scrollYProgress, [0, 1], ["0vh", "-20vh"]);
+  // Scroll-driven entrance for both the navbar and the section below
+  const navProgress = useTransform(scrollYProgress, [0.5, 0.85, 1], [0, 1, 1]);
+  const sectionOpacity = useTransform(
+    scrollYProgress,
+    [0.1, 0.5, 1],
+    [0, 1, 1],
+  );
+  const sectionY = useTransform(scrollYProgress, [0.1, 0.55, 1], [80, 0, 0]);
 
   return (
-    <>
-      {landingDone && <NavbarWrapper />}
-
-      <div ref={containerRef} style={{ height: "300vh", position: "relative" }}>
-        {/* Glow effect tied to the landing section */}
-        <motion.div
-          id="glow"
+    <div style={{ position: "relative" }}>
+      {/* Glow — page-level, top-right corner, scrolls with the document */}
+      <motion.div
+        ref={glowScope}
+        id="glow"
+        style={{
+          position: "absolute",
+          top: 0,
+          right: 0,
+          width: "70vw",
+          height: "70vw",
+          pointerEvents: "none",
+          zIndex: 0,
+          opacity: 0,
+        }}
+      >
+        <div
+          id="glow-inner"
+          aria-hidden
           style={{
             position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: "-60vh",
-            pointerEvents: "none",
-            zIndex: 0,
-            opacity: 0,
-            y: glowY,
+            inset: 0,
+            opacity: 0.3,
+            background:
+              "radial-gradient(circle at top right, rgba(47, 46, 190, 1), transparent 70%)",
           }}
-        >
-          <div
-            id="glow-inner"
-            aria-hidden
-            style={{
-              position: "absolute",
-              inset: 0,
-              opacity: 0.2,
-              background:
-                "radial-gradient(circle at top right, rgba(47, 46, 190, 1), transparent 60%)",
-            }}
-          />
-        </motion.div>
+        />
+      </motion.div>
 
+      <Navbar navProgress={navProgress} />
+
+      <div
+        ref={landingContainerRef}
+        style={{ height: "300vh", position: "relative" }}
+      >
         <Landing
           scrollYProgress={scrollYProgress}
+          onGlowReady={handleGlowReady}
           onComplete={() => setLandingDone(true)}
         />
       </div>
-      {landingDone && (
-        <motion.div
-          initial={{ opacity: 0, y: 100 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-          viewport={{ once: true, amount: 0 }}
-          style={{ marginTop: "-100vh", position: "relative", zIndex: 1 }}
-        >
-          <Experiences />
-        </motion.div>
-      )}
-    </>
+
+      <motion.div
+        id="experiences"
+        style={{
+          position: "relative",
+          opacity: sectionOpacity,
+          y: sectionY,
+          marginTop: "-80vh",
+        }}
+      >
+        <Experiences />
+      </motion.div>
+    </div>
   );
 }

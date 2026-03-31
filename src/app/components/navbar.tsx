@@ -1,15 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { useMotionValueEvent, type MotionValue } from "motion/react";
 import LiquidGlass from "./liquid-glass";
 
-const Navbar = ({
-  /** Progress of the navbar animation. 0 = fully visible, 1 = fully hidden. */
-  progress = 1,
-}: {
-  progress?: number;
-}) => {
+const Navbar = ({ navProgress }: { navProgress: MotionValue<number> }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [progress, setProgress] = useState(0);
+  useMotionValueEvent(navProgress, "change", setProgress);
 
   const navLinks = [
     { name: "Experience", href: "#experience" },

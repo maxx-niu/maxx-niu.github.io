@@ -28,11 +28,11 @@ export function useVisitors() {
     const lastLogged = localStorage.getItem("visitor-logged");
     const oneDayMs = 24 * 60 * 60 * 1000;
     const shouldLog = !lastLogged || Date.now() - Number(lastLogged) > oneDayMs;
-    const geoPromise = fetch("https://ipapi.co/json/")
+    const geoPromise = fetch("https://ipinfo.io/json")
       .then((res) => res.json())
       .then((data) => {
-        if (data.country_code) {
-          currentCountry = data.country_code;
+        if (data.country) {
+          currentCountry = data.country;
           if (shouldLog) {
             push(ref(db, "visitors"), {
               country: data.country_code,

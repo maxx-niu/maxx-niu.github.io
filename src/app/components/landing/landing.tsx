@@ -5,7 +5,6 @@ import StatusMetadata from "./widgets/status-metadata";
 import Globe from "./widgets/globe";
 import { useState } from "react";
 import {
-  animate,
   motion,
   useAnimate,
   useTransform,
@@ -14,18 +13,14 @@ import {
 import { useVisitors } from "@/app/hooks/use-visitors";
 
 const GRID_FADE = { duration: 0.9, ease: "easeIn" as const };
-const GLOW_PULSE = {
-  duration: 2.8,
-  repeat: Infinity,
-  repeatType: "reverse" as const,
-  ease: "easeIn" as const,
-};
 
 function Landing({
   onComplete,
+  onGlowReady,
   scrollYProgress,
 }: {
   onComplete?: () => void;
+  onGlowReady?: () => Promise<void>;
   scrollYProgress: MotionValue<number>;
 }) {
   const [scope, animateScope] = useAnimate();
@@ -36,7 +31,7 @@ function Landing({
   const heroX = useTransform(scrollYProgress, [0, 0.8], ["0vw", "-110vw"]);
   const globeX = useTransform(scrollYProgress, [0, 0.8], ["0vw", "110vw"]);
   const exitOpacity = useTransform(scrollYProgress, [0.1, 0.75], [1, 0]);
-  const gridY = useTransform(scrollYProgress, [0, 1], ["0vh", "-20vh"]);
+  const gridY = useTransform(scrollYProgress, [0, 1], ["0vh", "-100%"]);
 
   const onStatusComplete = async () => {
     await animateScope(
@@ -44,20 +39,23 @@ function Landing({
       { opacity: 1, clipPath: "inset(0 0 0 0)" },
       GRID_FADE,
     );
-    await animate("#glow", { opacity: 1 }, GRID_FADE);
+    await onGlowReady?.();
     animateScope(
       "#globe-container",
       { opacity: 1 },
       { duration: 2, ease: "easeIn" },
     );
-    animate("#glow-inner", { opacity: 0.55 }, GLOW_PULSE);
     setTimeout(() => {
       setHeadlineTrigger(true);
     }, 300);
   };
 
   return (
-    <div ref={scope} className="sticky top-0 h-screen overflow-hidden z-10">
+    <div
+      ref={scope}
+      className="sticky top-0 h-screen overflow-hidden z-10"
+      id="landing"
+    >
       {/* Grid background */}
       <motion.div
         id="grid"
