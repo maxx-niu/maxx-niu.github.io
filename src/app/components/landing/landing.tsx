@@ -53,7 +53,7 @@ function Landing({
   return (
     <div
       ref={scope}
-      className="sticky top-0 h-screen overflow-hidden z-10"
+      className="sticky top-0 h-screen overflow-hidden z-10 pointer-events-none"
       id="landing"
     >
       {/* Grid background */}
@@ -84,7 +84,7 @@ function Landing({
       >
         {/* Globe - desktop only */}
         <motion.div
-          className="hidden xl:block absolute top-1/2 -right-20 -translate-y-1/2 z-20"
+          className="hidden xl:block absolute top-1/2 -right-20 -translate-y-1/2 z-20 pointer-events-auto"
           style={{ x: globeX, opacity: exitOpacity }}
         >
           <div id="globe-container" style={{ opacity: 0 }}>
@@ -94,7 +94,7 @@ function Landing({
 
         {/* Hero */}
         <motion.section
-          className="relative z-10 flex flex-col justify-center py-20 min-h-screen"
+          className="relative z-10 flex flex-col justify-center py-20 min-h-screen pointer-events-auto"
           style={{ x: heroX, opacity: exitOpacity }}
         >
           <StatusMetadata
