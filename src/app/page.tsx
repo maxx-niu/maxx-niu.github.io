@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useAnimate, useScroll, useTransform } from "motion/react";
 import Experiences from "./components/experiences";
+import Projects from "./components/projects";
 import Landing from "./components/landing/landing";
 import Navbar from "./components/navbar";
 
@@ -110,6 +111,7 @@ export default function Home() {
         }}
       >
         <Experiences />
+        <Projects />
       </motion.div>
     </div>
   );
