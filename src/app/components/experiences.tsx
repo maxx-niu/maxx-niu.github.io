@@ -18,11 +18,10 @@ const experiences: ExperienceEntry[] = [
       "TypeScript",
       "XState",
       "React Query",
-      "Azure AD B2C",
+      "Azure",
       "Storybook",
       "Docker",
       "Jest",
-      "Azure DevOps",
       "Capacitor",
     ],
     bullets: [
