@@ -1,14 +1,36 @@
-import Image from "next/image";
+import fs from "fs";
+import path from "path";
+import ImageCarousel from "./carousel";
 
 interface Project {
   id: string;
   status?: "STABLE" | "IN PROGRESS";
   title: string;
   description: string;
-  image: string;
   tags: string[];
   link?: string;
   isFeatured?: boolean;
+  assetsFolder?: string;
+}
+
+const PLACEHOLDER =
+  "https://images.unsplash.com/photo-1655635949212-1d8f4f103ea1?auto=format&fit=crop&q=80&w=1200";
+
+const IMAGE_EXTENSIONS = new Set([".png", ".jpg", ".jpeg", ".webp"]);
+
+function getProjectImages(assetsFolder?: string): string[] {
+  if (!assetsFolder) return [PLACEHOLDER];
+
+  const dir = path.join(process.cwd(), "public", "projects", assetsFolder);
+  if (!fs.existsSync(dir)) return [PLACEHOLDER];
+
+  const files = fs
+    .readdirSync(dir)
+    .filter((f) => IMAGE_EXTENSIONS.has(path.extname(f).toLowerCase()))
+    .sort()
+    .map((f) => `/projects/${assetsFolder}/${f}`);
+
+  return files.length > 0 ? files : [PLACEHOLDER];
 }
 
 const projects: Project[] = [
@@ -18,11 +40,10 @@ const projects: Project[] = [
     status: "IN PROGRESS",
     description:
       "Your life's documents, made conversational. Upload your own files and ask questions in plain English — no keyword searches, no digging through pages. Your data stays yours.",
-    image:
-      "https://images.unsplash.com/photo-1655635949212-1d8f4f103ea1?auto=format&fit=crop&q=80&w=1200",
     tags: ["Next.js", "TypeScript", "OpenAI", "pgvector", "Supabase", "Vercel"],
     isFeatured: true,
     link: "https://github.com/maxx-niu/memolife",
+    assetsFolder: "memolife",
   },
   {
     id: "\/\/ 0-02",
@@ -30,8 +51,6 @@ const projects: Project[] = [
     title: "TabMagic",
     description:
       "Upload a photo of guitar tablature and get the notes and chords. Designed to help beginner guitarists understand the music they play beyond numbers on a sheet. Trained a custom object detection model from scratch on a hand-annotated dataset.",
-    image:
-      "https://images.unsplash.com/photo-1655635949212-1d8f4f103ea1?auto=format&fit=crop&q=80&w=1200",
     tags: [
       "Python",
       "PyTorch",
@@ -42,23 +61,28 @@ const projects: Project[] = [
     ],
     isFeatured: false,
     link: "https://github.com/maxx-niu/tabmagic",
+    assetsFolder: "tabmagic",
   },
   {
     id: "\/\/ 0-03",
     status: "STABLE",
     title: "Capstone: RoomEase",
-    image:
-      "https://images.unsplash.com/photo-1655635949212-1d8f4f103ea1?auto=format&fit=crop&q=80&w=1200",
     description:
       "A household management app with an agentic AI assistant that helps you manage the friction of a shared living space.",
-
     tags: ["Flutter", "Firebase", "OpenAI", "Pinecone"],
     isFeatured: false,
     link: "https://github.com/k233yang/RoomEase",
+    assetsFolder: "roomease",
   },
 ];
 
-function ProjectCard({ project }: { project: Project }) {
+function ProjectCard({
+  project,
+  images,
+}: {
+  project: Project;
+  images: string[];
+}) {
   const statusColor =
     project.status === "STABLE"
       ? "text-tertiary border-tertiary/40"
@@ -89,18 +113,11 @@ function ProjectCard({ project }: { project: Project }) {
         className={`flex flex-col flex-1 ${project.isFeatured ? "lg:flex-row" : ""}`}
       >
         {/* Image Section */}
-        <div
-          className={`relative overflow-hidden bg-surface-container-lowest ${project.isFeatured ? "aspect-video lg:aspect-auto lg:w-3/5" : "aspect-video"}`}
-        >
-          <Image
-            src={project.image}
-            alt={project.title}
-            fill
-            className="object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-70 transition-all duration-700 ease-in-out scale-105 group-hover:scale-100"
-          />
-          {/* Scanline overlay */}
-          <div className="absolute inset-0 pointer-events-none opacity-10 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-size-[100%_2px,3px_100%]" />
-        </div>
+        <ImageCarousel
+          images={images}
+          title={project.title}
+          isFeatured={project.isFeatured}
+        />
 
         {/* Text Content */}
         <div className="flex flex-col p-6 gap-4 flex-1 h-full">
@@ -139,6 +156,11 @@ function ProjectCard({ project }: { project: Project }) {
 }
 
 function Projects() {
+  const projectsWithImages = projects.map((p) => ({
+    project: p,
+    images: getProjectImages(p.assetsFolder),
+  }));
+
   return (
     <div className="w-full bg-surface">
       <main id="projects" className="pt-24 pb-20 min-h-screen bg-surface">
@@ -156,8 +178,8 @@ function Projects() {
 
           {/* Project Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-            {projects.map((project, i) => (
-              <ProjectCard key={i} project={project} />
+            {projectsWithImages.map(({ project, images }, i) => (
+              <ProjectCard key={i} project={project} images={images} />
             ))}
           </div>
         </div>
