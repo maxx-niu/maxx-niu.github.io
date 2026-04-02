@@ -32,7 +32,14 @@ const projects: Project[] = [
       "Upload a photo of guitar tablature and get the notes and chords. Designed to help beginner guitarists understand the music they play beyond numbers on a sheet. Trained a custom object detection model from scratch on a hand-annotated dataset.",
     image:
       "https://images.unsplash.com/photo-1655635949212-1d8f4f103ea1?auto=format&fit=crop&q=80&w=1200",
-    tags: ["Python", "PyTorch", "Flask", "React", "Computer Vision"],
+    tags: [
+      "Python",
+      "PyTorch",
+      "Flask",
+      "React",
+      "Computer Vision",
+      "Object Detection",
+    ],
     isFeatured: false,
     link: "https://github.com/maxx-niu/tabmagic",
   },
