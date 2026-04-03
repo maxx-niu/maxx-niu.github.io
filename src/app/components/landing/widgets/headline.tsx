@@ -65,7 +65,7 @@ function Headline({
             className="block"
             style={{ clipPath: HIDDEN_CLIP }}
           >
-            I build systems
+            I make systems
           </span>
           <span
             id="h1-line3"
