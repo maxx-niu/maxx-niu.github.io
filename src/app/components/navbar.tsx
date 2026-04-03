@@ -94,7 +94,8 @@ const Navbar = ({ navProgress }: { navProgress: MotionValue<number> }) => {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <LiquidGlass className="md:hidden absolute top-20 left-4 right-4 rounded-2xl p-6">
+        <div className="md:hidden absolute top-20 left-4 right-4">
+          <LiquidGlass className="rounded-2xl p-6">
           <ul className="flex flex-col gap-4">
             {navLinks.map((link) => (
               <li key={link.name}>
@@ -117,6 +118,7 @@ const Navbar = ({ navProgress }: { navProgress: MotionValue<number> }) => {
             </li>
           </ul>
         </LiquidGlass>
+        </div>
       )}
     </nav>
   );
