@@ -125,7 +125,7 @@ export default function ImageCarousel({
         </>
       )}
 
-      {createPortal(
+      {typeof document !== "undefined" && createPortal(
         <AnimatePresence>
           {fullscreen && (
             <>
