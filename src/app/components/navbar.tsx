@@ -16,7 +16,7 @@ const Navbar = ({ navProgress }: { navProgress: MotionValue<number> }) => {
 
   return (
     <nav
-      className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4"
+      className="fixed top-6 left-0 right-0 z-40 flex justify-center px-4"
       style={{
         transform: `translateY(${(1 - progress) * -56}px)`,
         pointerEvents: progress > 0.5 ? "auto" : "none",
