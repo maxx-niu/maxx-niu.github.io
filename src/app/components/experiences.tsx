@@ -162,37 +162,30 @@ function Experiences() {
   return (
     <div className="w-full bg-surface selection:bg-primary-container selection:text-on-primary-container">
       {/* Main Content */}
-      <main id="experience" className="pt-24 pb-20 min-h-screen bg-surface">
-        <div className="max-w-4xl mx-auto px-6 md:px-12 py-8">
-          {/* Page Header */}
-          <header className="mb-16">
-            <p className="font-mono text-[10px] text-primary tracking-[0.3em] uppercase mb-2">
-              SYSTEM_LOG // ARCHIVE
-            </p>
-            <h1 className="font-headline text-5xl md:text-6xl font-bold tracking-tighter uppercase text-on-surface">
-              Experience
-            </h1>
-            <div className="h-px w-24 bg-primary mt-6" />
-          </header>
+      <div className="max-w-4xl mx-auto px-6 md:px-12 py-8">
+        {/* Page Header */}
+        <header className="mb-16">
+          <p className="font-mono text-[10px] text-primary tracking-[0.3em] uppercase mb-2">
+            SYSTEM_LOG // ARCHIVE
+          </p>
+          <h1 className="font-headline text-5xl md:text-6xl font-bold tracking-tighter uppercase text-on-surface">
+            Experience
+          </h1>
+          <div className="h-px w-24 bg-primary mt-6" />
+        </header>
 
-          {/* Timeline */}
-          <section className="relative">
-            {/* Vertical Line */}
-            <div className="absolute left-0 md:left-4 top-0 bottom-0 timeline-line" />
+        {/* Timeline */}
+        <section className="relative">
+          {/* Vertical Line */}
+          <div className="absolute left-0 md:left-4 top-0 bottom-0 timeline-line" />
 
-            <div className="space-y-16">
-              {experiences.map((entry, i) => (
-                <TimelineEntry key={i} entry={entry} />
-              ))}
-            </div>
-          </section>
-
-          {/* Bottom Section CTA
-          <section className="mt-24 pt-12 border-t border-outline-variant/20 flex flex-col md:flex-row justify-between items-start gap-8">
-            <div>FOOTER</div>
-          </section> */}
-        </div>
-      </main>
+          <div className="space-y-16">
+            {experiences.map((entry, i) => (
+              <TimelineEntry key={i} entry={entry} />
+            ))}
+          </div>
+        </section>
+      </div>
     </div>
   );
 }

@@ -163,27 +163,25 @@ function Projects() {
 
   return (
     <div className="w-full bg-surface">
-      <main id="projects" className="pt-24 pb-20 min-h-screen bg-surface">
-        <div className="max-w-4xl mx-auto px-6 md:px-12 py-8">
-          {/* Page Header */}
-          <header className="mb-16">
-            <p className="font-mono text-[10px] text-primary tracking-[0.3em] uppercase mb-2">
-              SYSTEM_LOG // WORKS
-            </p>
-            <h1 className="font-headline text-5xl md:text-6xl font-bold tracking-tighter uppercase text-on-surface">
-              Projects
-            </h1>
-            <div className="h-px w-24 bg-primary mt-6" />
-          </header>
+      <div className="max-w-4xl mx-auto px-6 md:px-12 py-8">
+        {/* Page Header */}
+        <header className="mb-16">
+          <p className="font-mono text-[10px] text-primary tracking-[0.3em] uppercase mb-2">
+            SYSTEM_LOG // WORKS
+          </p>
+          <h1 className="font-headline text-5xl md:text-6xl font-bold tracking-tighter uppercase text-on-surface">
+            Projects
+          </h1>
+          <div className="h-px w-24 bg-primary mt-6" />
+        </header>
 
-          {/* Project Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-            {projectsWithImages.map(({ project, images }, i) => (
-              <ProjectCard key={i} project={project} images={images} />
-            ))}
-          </div>
+        {/* Project Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+          {projectsWithImages.map(({ project, images }, i) => (
+            <ProjectCard key={i} project={project} images={images} />
+          ))}
         </div>
-      </main>
+      </div>
     </div>
   );
 }
