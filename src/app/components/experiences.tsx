@@ -172,7 +172,7 @@ function Experiences() {
   const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <div className="w-full bg-surface selection:bg-primary-container selection:text-on-primary-container">
+    <div id="experience" className="w-full bg-surface selection:bg-primary-container selection:text-on-primary-container">
       {/* Main Content */}
       <div className="max-w-4xl mx-auto px-6 md:px-12 py-24">
         {/* Page Header */}

@@ -161,7 +161,7 @@ function Projects() {
   }));
 
   return (
-    <div className="w-full bg-surface">
+    <div id="projects" className="w-full bg-surface">
       <div className="max-w-4xl mx-auto px-6 md:px-12 py-24">
         {/* Page Header */}
         <AnimatedHeader>
