@@ -8,15 +8,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Max Niu",
     description: "Software engineer portfolio and projects.",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1265,
-        height: 765,
-        alt: "Max Niu",
-        type: "image/png",
-      },
-    ],
+    url: "https://maxx-niu.github.io",
+    siteName: "Max Niu",
+    images: [{ url: "/og-image.png", width: 1265, height: 765 }],
+    type: "website",
   },
 };
 
