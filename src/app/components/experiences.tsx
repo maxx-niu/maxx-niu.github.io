@@ -194,8 +194,6 @@ function Experiences() {
 
         {/* Timeline */}
         <section className="relative" ref={timelineRef}>
-          {/* Base line with gradient fade */}
-          <div className="absolute left-0 md:left-4 top-0 bottom-0 timeline-line" />
           {/* Drawing line — traces downward on scroll */}
           <motion.div
             className="absolute left-0 md:left-4 top-0 w-px bg-primary/60 origin-top"
