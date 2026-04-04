@@ -1,12 +1,22 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "motion/react";
+
+const fadeUp = {
+  initial: { opacity: 0, y: 30 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { margin: "-100px" },
+  transition: { duration: 0.6, ease: "easeOut" as const },
+};
 
 function About() {
   return (
     <div className="w-full bg-surface" id="about">
-      <div className="max-w-4xl mx-auto px-6 md:px-12 py-8">
+      <div className="max-w-4xl mx-auto px-6 md:px-12 pt-32 pb-24">
         <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-start md:items-stretch">
           {/* Header — visible only on mobile, above photo */}
-          <header className="md:hidden">
+          <motion.header className="md:hidden" {...fadeUp}>
             <p className="font-mono text-[10px] text-primary tracking-[0.3em] uppercase mb-2">
               SYSTEM_LOG // PROFILE
             </p>
@@ -14,10 +24,16 @@ function About() {
               About Me
             </h1>
             <div className="h-px w-24 bg-primary mt-6" />
-          </header>
+          </motion.header>
 
-          {/* Photo + metadata beneath */}
-          <div className="w-full md:w-1/2">
+          {/* Photo */}
+          <motion.div
+            className="w-full md:w-1/2"
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ margin: "-100px" }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+          >
             <div className="aspect-3/4 relative overflow-hidden border border-outline-variant/40 rounded-none">
               <Image
                 src="/about/portrait.jpg"
@@ -28,10 +44,16 @@ function About() {
                 priority
               />
             </div>
-          </div>
+          </motion.div>
 
           {/* Info */}
-          <div className="w-full md:w-1/2 flex flex-col justify-center">
+          <motion.div
+            className="w-full md:w-1/2 flex flex-col justify-center"
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ margin: "-100px" }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
+          >
             {/* Header — visible only on desktop */}
             <header className="hidden md:block mb-10">
               <p className="font-mono text-[10px] text-primary tracking-[0.3em] uppercase mb-2">
@@ -55,8 +77,8 @@ function About() {
               I&apos;m a software engineer who&apos;s worked across the stack
               &mdash; from serverless cloud backends to large-scale frontend
               builds &mdash; with a focus on React and TypeScript. I care about
-              shipping things that are fast, thoughtfully designed, and actually
-              used by people.
+              shipping things that are scalable, thoughtfully designed, and
+              actually used by people.
             </p>
 
             <div className="mt-3 font-mono text-[12px] uppercase tracking-widest text-outline flex items-center gap-4">
@@ -66,7 +88,7 @@ function About() {
               <span className="text-outline-variant">{"//"}</span>
               <span>UWaterloo &apos;24</span>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>

@@ -103,7 +103,7 @@ export default function PageClient({
           position: "relative",
           opacity: sectionOpacity,
           y: sectionY,
-          marginTop: "-80vh",
+          marginTop: "-95vh",
         }}
       >
         {children}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "motion/react";
 import { Mail, Phone, Copy, Check, ExternalLink } from "lucide-react";
 
 // Icons are from Simple Icons
@@ -36,8 +37,14 @@ function Contact() {
 
   return (
     <div className="w-full bg-surface">
-      <div className="max-w-4xl mx-auto px-6 md:px-12 py-8">
-        <header className="mb-16">
+      <div className="max-w-4xl mx-auto px-6 md:px-12 pt-24 pb-32">
+        <motion.header
+          className="mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ margin: "-100px" }}
+          transition={{ duration: 0.6, ease: "easeOut" as const }}
+        >
           <p className="font-mono text-[10px] text-primary tracking-[0.3em] uppercase mb-2">
             SYSTEM_LOG // CONNECT
           </p>
@@ -45,10 +52,16 @@ function Contact() {
             Contact
           </h1>
           <div className="h-px w-24 bg-primary mt-6" />
-        </header>
+        </motion.header>
 
         {/* Business Card */}
-        <div className="border border-outline-variant/40 p-8 md:p-12 self-center">
+        <motion.div
+          className="border border-outline-variant/40 p-8 md:p-12 self-center"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ margin: "-50px" }}
+          transition={{ duration: 0.5, ease: "easeOut" as const, delay: 0.1 }}
+        >
           {/* Name + Title */}
           <div className="mb-8">
             <h2 className="font-mono text-2xl font-bold tracking-tight text-on-surface uppercase">
@@ -127,7 +140,7 @@ function Contact() {
               <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
             </a>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

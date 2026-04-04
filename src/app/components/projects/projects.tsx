@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import ImageCarousel from "./carousel";
+import { AnimatedHeader, AnimatedCard } from "./animated-section";
 
 interface Project {
   id: string;
@@ -91,9 +92,7 @@ function ProjectCard({
         : "text-outline border-outline/40";
 
   return (
-    <div
-      className={`group flex flex-col border border-outline-variant/40 bg-surface-container-low overflow-hidden transition-all duration-300 hover:border-outline-variant ${project.isFeatured ? "lg:col-span-4" : "lg:col-span-2"}`}
-    >
+    <div className="group flex h-full flex-col border border-outline-variant/40 bg-surface-container-low overflow-hidden transition-all duration-300 hover:border-outline-variant">
       {/* Header Metadata */}
       <div className="flex justify-between items-center px-4 py-3 border-b border-outline-variant/40 bg-surface-container">
         <span className="text-[10px] font-mono text-outline uppercase tracking-widest">
@@ -163,9 +162,9 @@ function Projects() {
 
   return (
     <div className="w-full bg-surface">
-      <div className="max-w-4xl mx-auto px-6 md:px-12 py-8">
+      <div className="max-w-4xl mx-auto px-6 md:px-12 py-24">
         {/* Page Header */}
-        <header className="mb-16">
+        <AnimatedHeader>
           <p className="font-mono text-[10px] text-primary tracking-[0.3em] uppercase mb-2">
             SYSTEM_LOG // WORKS
           </p>
@@ -173,12 +172,18 @@ function Projects() {
             Projects
           </h1>
           <div className="h-px w-24 bg-primary mt-6" />
-        </header>
+        </AnimatedHeader>
 
         {/* Project Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           {projectsWithImages.map(({ project, images }, i) => (
-            <ProjectCard key={i} project={project} images={images} />
+            <AnimatedCard
+              key={i}
+              index={i}
+              className={project.isFeatured ? "lg:col-span-4" : "lg:col-span-2"}
+            >
+              <ProjectCard project={project} images={images} />
+            </AnimatedCard>
           ))}
         </div>
       </div>

@@ -1,3 +1,8 @@
+"use client";
+
+import { motion, useScroll, useTransform } from "motion/react";
+import { useRef } from "react";
+
 interface ExperienceEntry {
   period: string;
   title: string;
@@ -159,12 +164,25 @@ function TimelineEntry({ entry }: { entry: ExperienceEntry }) {
 }
 
 function Experiences() {
+  const timelineRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ["start 80%", "end 50%"],
+  });
+  const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
   return (
     <div className="w-full bg-surface selection:bg-primary-container selection:text-on-primary-container">
       {/* Main Content */}
-      <div className="max-w-4xl mx-auto px-6 md:px-12 py-8">
+      <div className="max-w-4xl mx-auto px-6 md:px-12 py-24">
         {/* Page Header */}
-        <header className="mb-16">
+        <motion.header
+          className="mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ margin: "-100px" }}
+          transition={{ duration: 0.6, ease: "easeOut" as const }}
+        >
           <p className="font-mono text-[10px] text-primary tracking-[0.3em] uppercase mb-2">
             SYSTEM_LOG // ARCHIVE
           </p>
@@ -172,16 +190,43 @@ function Experiences() {
             Experience
           </h1>
           <div className="h-px w-24 bg-primary mt-6" />
-        </header>
+        </motion.header>
 
         {/* Timeline */}
-        <section className="relative">
-          {/* Vertical Line */}
+        <section className="relative" ref={timelineRef}>
+          {/* Base line with gradient fade */}
           <div className="absolute left-0 md:left-4 top-0 bottom-0 timeline-line" />
+          {/* Drawing line — traces downward on scroll */}
+          <motion.div
+            className="absolute left-0 md:left-4 top-0 w-px bg-primary/60 origin-top"
+            style={{
+              height: lineHeight,
+              maskImage:
+                "linear-gradient(180deg, transparent 0%, black 15%, black 85%, transparent 100%)",
+              WebkitMaskImage:
+                "linear-gradient(180deg, transparent 0%, black 15%, black 85%, transparent 100%)",
+            }}
+          >
+            {/* Glow at the leading edge */}
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-px h-12 bg-linear-to-t from-primary to-transparent" />
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-4 -translate-y-1 rounded-full bg-primary/30 blur-md" />
+          </motion.div>
 
           <div className="space-y-16">
             {experiences.map((entry, i) => (
-              <TimelineEntry key={i} entry={entry} />
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ margin: "-50px" }}
+                transition={{
+                  duration: 0.5,
+                  ease: "easeOut" as const,
+                  delay: i * 0.1,
+                }}
+              >
+                <TimelineEntry entry={entry} />
+              </motion.div>
             ))}
           </div>
         </section>
