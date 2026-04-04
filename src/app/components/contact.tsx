@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "motion/react";
-import { Mail, Phone, Copy, Check, ExternalLink } from "lucide-react";
+import { Mail, Phone, Copy, Check, ExternalLink, FileText } from "lucide-react";
 
 // Icons are from Simple Icons
 function GithubIcon({ className }: { className?: string }) {
@@ -118,7 +118,7 @@ function Contact() {
           </div>
 
           {/* Links */}
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-6 flex-wrap">
             <a
               href={GITHUB}
               target="_blank"
@@ -138,6 +138,14 @@ function Contact() {
               <LinkedinIcon className="w-4 h-4" />
               <span>LinkedIn</span>
               <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </a>
+            <a
+              href="/resume/Resume - Maximus Niu.pdf"
+              download
+              className="flex items-center gap-2 font-mono text-sm text-secondary hover:text-primary transition-colors group"
+            >
+              <FileText className="w-4 h-4" />
+              <span>Resume</span>
             </a>
           </div>
         </motion.div>
