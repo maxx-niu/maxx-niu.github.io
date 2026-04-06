@@ -162,7 +162,7 @@ function Projects() {
 
   return (
     <div id="projects" className="w-full bg-surface">
-      <div className="max-w-4xl mx-auto px-6 md:px-12 py-24">
+      <div className="max-w-6xl mx-auto px-6 md:px-12 py-24">
         {/* Page Header */}
         <AnimatedHeader>
           <p className="font-mono text-[10px] text-primary tracking-[0.3em] uppercase mb-2">

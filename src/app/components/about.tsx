@@ -13,7 +13,7 @@ const fadeUp = {
 function About() {
   return (
     <div className="w-full bg-surface" id="about">
-      <div className="max-w-4xl mx-auto px-6 md:px-12 pt-32 pb-24">
+      <div className="max-w-6xl mx-auto px-6 md:px-12 pt-32 pb-24">
         <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-start md:items-stretch">
           {/* Header — visible only on mobile, above photo */}
           <motion.header className="md:hidden" {...fadeUp}>
@@ -28,19 +28,19 @@ function About() {
 
           {/* Photo */}
           <motion.div
-            className="w-full md:w-1/2"
+            className="w-full md:w-1/2 self-center"
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ margin: "-100px" }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            <div className="aspect-3/4 relative overflow-hidden border border-outline-variant/40 rounded-none">
+            <div className="aspect-3419/2148 relative overflow-hidden border border-outline-variant/40 rounded-none">
               <Image
                 src="/about/portrait.jpg"
                 alt="Portrait"
                 fill
                 sizes="(min-width: 768px) 50vw, 100vw"
-                className="object-cover"
+                className="object-cover object-center"
                 priority
               />
             </div>

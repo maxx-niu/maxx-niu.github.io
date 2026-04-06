@@ -37,7 +37,7 @@ function Contact() {
 
   return (
     <div id="contact" className="w-full bg-surface">
-      <div className="max-w-4xl mx-auto px-6 md:px-12 pt-24 pb-32">
+      <div className="max-w-6xl mx-auto px-6 md:px-12 pt-24 pb-32">
         <motion.header
           className="mb-16"
           initial={{ opacity: 0, y: 30 }}

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { db } from "../firebase-config";
-import { ref, push, query, limitToLast, get } from "firebase/database";
+import { ref, push, query, limitToLast, get, serverTimestamp } from "firebase/database";
 import { COUNTRY_CENTROIDS } from "../data/country-centroids";
 
 export interface Visitor {
@@ -35,10 +35,14 @@ export function useVisitors() {
           currentCountry = data.country;
           if (shouldLog) {
             push(ref(db, "visitors"), {
-              country: data.country_code,
-              timestamp: Date.now(),
+              country: data.country,
+              timestamp: serverTimestamp(),
             });
             localStorage.setItem("visitor-logged", String(Date.now()));
+            console.log(
+              "set local storage: visitor-logged",
+              String(Date.now()),
+            );
           }
         }
       })
