@@ -65,7 +65,7 @@ function Headline({
             className="block"
             style={{ clipPath: HIDDEN_CLIP }}
           >
-            I build systems
+            I make systems
           </span>
           <span
             id="h1-line3"
@@ -89,20 +89,20 @@ function Headline({
         className="mt-12 flex flex-col sm:flex-row gap-6"
         style={{ opacity: 0, transform: "translateY(16px)" }}
       >
-        <div className="glow-border-primary rounded-full group cursor-pointer">
+        <a href="#projects" className="glow-border-primary rounded-full group cursor-pointer">
           <LiquidGlass className="px-8 py-4 rounded-full bg-[#0e0e11] group-hover:bg-surface-container-high group-active:bg-surface-container-low transition-colors duration-150">
             <span className="font-headline font-bold uppercase tracking-tighter text-sm text-secondary group-hover:text-on-surface/60 transition-colors duration-150">
               VIEW PROJECTS
             </span>
           </LiquidGlass>
-        </div>
-        <div className="glow-border-secondary rounded-full group cursor-pointer">
+        </a>
+        <a href="/resume/Resume - Maximus Niu.pdf" download className="glow-border-secondary rounded-full group cursor-pointer">
           <LiquidGlass className="px-8 py-4 rounded-full bg-[#0e0e11] group-hover:bg-surface-container-high group-active:bg-surface-container-low transition-colors duration-150">
             <span className="font-headline font-bold uppercase tracking-tighter text-sm text-secondary group-hover:text-on-surface/60 transition-colors duration-150">
               DOWNLOAD CV
             </span>
           </LiquidGlass>
-        </div>
+        </a>
       </div>
     </div>
   );

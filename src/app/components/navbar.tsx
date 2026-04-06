@@ -10,13 +10,20 @@ const Navbar = ({ navProgress }: { navProgress: MotionValue<number> }) => {
   useMotionValueEvent(navProgress, "change", setProgress);
 
   const navLinks = [
-    { name: "Experience", href: "#experience" },
-    { name: "Projects", href: "#projects" },
+    { name: "About", id: "about" },
+    { name: "Experience", id: "experience" },
+    { name: "Projects", id: "projects" },
+    { name: "Contact", id: "contact" },
   ];
+
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    setMobileOpen(false);
+  };
 
   return (
     <nav
-      className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4"
+      className="fixed top-6 left-0 right-0 z-40 flex justify-center px-4"
       style={{
         transform: `translateY(${(1 - progress) * -56}px)`,
         pointerEvents: progress > 0.5 ? "auto" : "none",
@@ -32,33 +39,25 @@ const Navbar = ({ navProgress }: { navProgress: MotionValue<number> }) => {
         blur={4}
       >
         {/* Logo */}
-        <a
-          href="#"
-          className="font-headline text-on-surface font-bold tracking-tight text-lg hover:text-primary transition-colors"
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="font-headline text-on-surface font-bold tracking-tight text-lg hover:text-primary transition-colors cursor-pointer"
         >
           MAX NIU
-        </a>
+        </button>
 
         {/* Navigation Links */}
         <ul className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <li key={link.name}>
-              <a
-                href={link.href}
-                className="font-mono text-xs tracking-widest uppercase text-secondary hover:text-primary transition-colors"
+              <button
+                onClick={() => scrollTo(link.id)}
+                className="font-mono text-xs tracking-widest uppercase text-secondary hover:text-primary transition-colors cursor-pointer"
               >
                 {link.name}
-              </a>
+              </button>
             </li>
           ))}
-          <li>
-            <a
-              href="mailto:maxniu444@gmail.com"
-              className="font-mono text-xs tracking-widest uppercase text-on-surface-variant bg-primary-container/30 hover:bg-primary-container/50 px-4 py-1.5 rounded-full transition-colors"
-            >
-              Contact
-            </a>
-          </li>
         </ul>
 
         {/* Mobile Menu Toggle */}
@@ -94,29 +93,22 @@ const Navbar = ({ navProgress }: { navProgress: MotionValue<number> }) => {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <LiquidGlass className="md:hidden absolute top-20 left-4 right-4 rounded-2xl p-6">
+        <div className="md:hidden absolute top-20 left-4 right-4">
+          <LiquidGlass className="rounded-2xl p-6">
           <ul className="flex flex-col gap-4">
             {navLinks.map((link) => (
               <li key={link.name}>
-                <a
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="font-mono text-xs tracking-widest uppercase text-secondary hover:text-primary transition-colors"
+                <button
+                  onClick={() => scrollTo(link.id)}
+                  className="font-mono text-xs tracking-widest uppercase text-secondary hover:text-primary transition-colors cursor-pointer"
                 >
                   {link.name}
-                </a>
+                </button>
               </li>
             ))}
-            <li>
-              <a
-                href="mailto:maxniu444@gmail.com"
-                className="font-mono text-xs tracking-widest uppercase text-on-surface-variant"
-              >
-                Contact
-              </a>
-            </li>
           </ul>
         </LiquidGlass>
+        </div>
       )}
     </nav>
   );
