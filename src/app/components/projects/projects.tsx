@@ -37,17 +37,36 @@ function getProjectImages(assetsFolder?: string): string[] {
 const projects: Project[] = [
   {
     id: "\/\/ 0-01",
+    status: "STABLE",
+    title: "Rewatched",
+    description:
+      "A Chrome extension that silently indexes every YouTube video you watch and lets you semantically search your entire history from the browser toolbar. Your complete YouTube history stays on your own machine.",
+    tags: [
+      "Chrome Extension (MV3)",
+      "React",
+      "TypeScript",
+      "Vite",
+      "Dexie",
+      "RAG",
+      "Vercel",
+    ],
+    isFeatured: true,
+    link: "https://github.com/maxx-niu/rewatched",
+    assetsFolder: "rewatched",
+  },
+  {
+    id: "\/\/ 0-02",
     title: "MemoLife",
     status: "IN PROGRESS",
     description:
       "Your life's documents, made conversational. Upload your own files and ask questions in plain English — no keyword searches, no digging through pages. Your data stays yours.",
     tags: ["Next.js", "TypeScript", "OpenAI", "pgvector", "Supabase", "Vercel"],
-    isFeatured: true,
+    isFeatured: false,
     link: "https://github.com/maxx-niu/memolife",
     assetsFolder: "memolife",
   },
   {
-    id: "\/\/ 0-02",
+    id: "\/\/ 0-03",
     status: "STABLE",
     title: "TabMagic",
     description:
@@ -65,7 +84,7 @@ const projects: Project[] = [
     assetsFolder: "tabmagic",
   },
   {
-    id: "\/\/ 0-03",
+    id: "\/\/ 0-04",
     status: "STABLE",
     title: "Capstone: RoomEase",
     description:
