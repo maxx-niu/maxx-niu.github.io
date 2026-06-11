@@ -21,7 +21,7 @@ function LinkedinIcon({ className }: { className?: string }) {
   );
 }
 
-const EMAIL = "maxniu444@gmail.com";
+const EMAIL = "maxx.niu5@gmail.com";
 const PHONE = "+1 (519) 781 6213";
 const GITHUB = "https://github.com/maxx-niu";
 const LINKEDIN = "https://linkedin.com/in/max-n";
