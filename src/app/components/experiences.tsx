@@ -14,10 +14,30 @@ interface ExperienceEntry {
 
 const experiences: ExperienceEntry[] = [
   {
-    period: "MAR 2025 — PRESENT",
+    period: "May 2026 - Present",
+    title: "REACT DEVELOPER",
+    company: "T6 Health Systems",
+    isCurrent: true,
+    technologies: [
+      "React.js",
+      "Redux",
+      "Zustand",
+      "React Query",
+      "Vitest",
+      "React Testing Library",
+      "HIPAA",
+    ],
+    bullets: [
+      "Currently working on the T6 Health Systems web application, a trauma care delivery platform made for on-the-field first responders designed to work in unforgiving environments",
+      "Optimized unnecessary component renderings caused by auth token refreshes by migrating from React Context to dedicated Redux selectors",
+      "Built a data table integrated with external lab provider systems, enabling users to access, update, and seed patient records directly from lab results",
+    ],
+  },
+  {
+    period: "MAR 2025 — May 2026",
     title: "REACT DEVELOPER",
     company: "Venuiti Healthcare",
-    isCurrent: true,
+    isCurrent: false,
     technologies: [
       "Next.js",
       "TypeScript",
@@ -31,7 +51,7 @@ const experiences: ExperienceEntry[] = [
     ],
     bullets: [
       <>
-        Currently building the{" "}
+        Helped build the{" "}
         <a
           href="https://www.mymedcan.com"
           target="_blank"
@@ -40,11 +60,23 @@ const experiences: ExperienceEntry[] = [
         >
           myMedcan
         </a>{" "}
-        healthcare portal from scratch — designing the full component system,
+        healthcare portal from scratch by designing the full component system,
         auth, and a booking flow that serves tens of thousands of users and
         drives hundreds of thousands in monthly revenue and bookings.
       </>,
-      "Porting the portal to iOS and Android, integrating native SDK plugins for authentication and push notifications.",
+      <>
+        Laid the mobile-first foundation for myMedcan&apos;s first{" "}
+        <a
+          href="https://apps.apple.com/us/app/mymedcan-by-medcan/id6759800646"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-primary underline underline-offset-2 hover:opacity-80"
+        >
+          iOS release
+        </a>{" "}
+        , integrating native SDK plugins for authentication and push
+        notifications.
+      </>,
     ],
   },
   {
